@@ -31,7 +31,7 @@
     &.contents {
         position: relative;
         display: grid;
-        grid-template-columns: 1fr;
+        // grid-template-columns: 1fr;
         grid-template-rows: var(--icon-size) auto;
         overflow: hidden;
         .player-menu {
@@ -41,6 +41,7 @@
         }
         > :last-child {
             overflow-y: auto;
+            grid-column: 1~"/"3;
         }
     }
     .player-menu {

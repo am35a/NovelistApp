@@ -21,7 +21,18 @@ hr {
         height: 1px;
     }
 }
-  
+
+.display-1,
+.display-2,
+.display-3,
+.display-4 {
+    font-weight: 300;
+    line-height: 1.2
+}
+.display-1 { font-size: 6rem; }
+.display-2 { font-size:5.5rem; }
+.display-3 { font-size:4.5rem; }
+.display-4 { font-size:3.5rem; }
 
 .text-truncate {
     overflow: hidden;
@@ -69,13 +80,10 @@ hr {
     }
 }
 
-
-
-
 @selectors: range(0, 100, 10);
 each(@selectors, {
     .opa-@{value} {
-        opacity: percentage(@value/100);
+        opacity: @value/100;
     }
 });
 
@@ -119,7 +127,6 @@ each(@selectors, {
         text-transform: uppercase;
     }
 }
-
 
 .rate {
     position: relative;
