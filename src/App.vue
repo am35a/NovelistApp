@@ -1,46 +1,15 @@
 <template>
     <main id="app" :class="{ show: isSectionPlayer }">
-        <section v-if="isSectionSignIn" class="signin">
-            <div class="mb-3">
-                <label for="login">EMail</label>
-                <input id="login" type="text" value="your@email.com">
-            </div>
-            <div class="mb-5">
-                <label for="password">Password</label>
-                <input type="password" value="123456">
-            </div>
-            <input @click="signingIn" type="button" value="Sign In">
-        </section>
-        <section v-if="showSectionNovelist" class="novelist">
-            <img src="http://mobitoon.ru/novelist/images/logo/logoname.svg" alt="Novelist">
-            <div class="pt-3 text-center">
-                <span class="m-2">&copy; 2020</span>
-                <a class="m-2 text-uppercase text-decoration-none text-primary" href="http://noveli.st" target="_blank">www.noveli.st</a>
-                <span class="m-2">TX USA</span>
-            </div>
-        </section>
-        <section v-if="showSectionAccount" class="account">
-            <div class="text-center mb-3">
-                <img class="thumb rounded-lg shadow-sm" src="https://ak.picdn.net/shutterstock/videos/1033560494/thumb/4.jpg" alt="Username">
-                <div>
-                    <b>Username</b>
-                </div>
-            </div>
-            <input @click="signingOut" type="button" value="Sign Out">
-        </section>
-        <section v-if="isSectionList" class="list">
-            <div class="item" v-for="(book, index) in books" :key="index" @click="playerOpen(0)"> <!--@click="playerOpen(index)"--> <!-- :class="[showPlayer == book.id ? 'opa-40' : '']"-->
-                <img class="thumb rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${book.id}/preview.jpg`" :alt="`${book.title}`">
-                <div class="title text-truncate">{{ book.title }}</div>
-                <div class="author opa-40">{{ book.author }}</div>
-                <div class="status opa-60">XX% read</div>
-            </div>
-        </section>
+        <SectionSignIn v-if="isSectionSignIn" class="signin"></SectionSignIn>
+        <SectionNovelist v-if="showSectionNovelist" class="novelist"></SectionNovelist>
+        <SectionAccount v-if="showSectionAccount" class="account"></SectionAccount>
+        <SectionList v-if="isSectionList" class="list"></SectionList>
+
         <template v-if="isSectionPlayer">
             <section class="player bkg">
                 <img class="rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/cover.jpg`" alt="">
             </section>
-            <section v-show="!this.isSectionShare && !this.isSectionRate && !this.isSectionDescription && !this.isSectionContents" class="player">
+            <section v-show="!isSectionShare && !isSectionRate && !isSectionDescription && !isSectionContents" class="player">
                 <div class="player-menu">
                     <svg @click="toggleSectionShare" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
@@ -127,7 +96,7 @@
                 <div>
                     <div class="text-center">Curent rate</div>
                     <div class="text-center">Your vote</div>
-                    <div class="rate">
+                    <!--div class="rate">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/>
                         </svg>
@@ -143,7 +112,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/>
                         </svg>
-                    </div>
+                    </div-->
                 </div>
             </section>
             <section v-if="isSectionDescription" class="player description">
@@ -178,37 +147,28 @@
                 </div>
             </section>
         </template>
-        <section class="menu">
-            <svg @click="toggleSectionNovelist" class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-                <title>Novelist</title>
-                <circle fill="#D4145A" cx="128" cy="128" r="128"/>
-                <path fill="#ffffff" d="M113.9,140.5c-6.2-6.9-6.6-17.3-0.6-24.6c6.6-8.1,18.7-9.3,26.7-2.7c8.2,6.6,9.4,18.7,2.7,26.7 c-6,7.4-16.3,9.1-24.3,4.3L44,235.4l3.8,2.9c2.6-3.9,31.1-42,114.1-52.8c20.1-50.6,72.5-117.3,81.8-128.8 c-15.6-25.5-39.4-45.3-67.7-56l0,0c-9,10.7-64.1,76.2-110.2,106.3c6,83.4-26.3,118.2-29.9,121.6l3.5,3.1L113.9,140.5z"/>
-            </svg>
-            <template v-if="isAuthenticated">
-                <div></div>
-                <svg :type="'tap'" :call="() => { isAuthenticated = false}" class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14.94 4.66h-4.72l2.36-2.36zm-4.69 14.71h4.66l-2.33 2.33zM6.1 6.27L1.6 17.73h1.84l.92-2.45h5.11l.92 2.45h1.84L7.74 6.27H6.1zm-1.13 7.37l1.94-5.18 1.94 5.18H4.97zm10.76 2.5h6.12v1.59h-8.53v-1.29l5.92-8.56h-5.88v-1.6h8.3v1.26l-5.93 8.6z"/>
-                </svg>
-                <div class="divider"></div>
-                <svg @click="toggleSectionAccount" class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 5v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.11 0-2 .9-2 2zm12 4c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm-9 8c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1H6v-1z"/>
-                </svg>
-            </template>
-        </section>
-
-        <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+        
+        <SectionMenu class="menu"></SectionMenu>
     </main>
 </template>
 
 <script>
-    // import HelloWorld from './components/HelloWorld.vue'
+    import SectionSignIn    from './components/SectionSignIn.vue'
+    import SectionNovelist  from './components/SectionNovelist.vue'
+    import SectionAccount   from './components/SectionAccount.vue'
+    import SectionList      from './components/SectionList.vue'
+    import SectionMenu      from './components/SectionMenu.vue'
 
     // import axios from 'axios'
 
     export default {
         name: 'App',
         components: {
-            // HelloWorld
+            SectionSignIn,
+            SectionNovelist,
+            SectionAccount,
+            SectionList,
+            SectionMenu
         },
         data() {
             return {
