@@ -1,0 +1,47 @@
+.list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content;
+    grid-gap: calc(var(--grid-gap) * 2);
+    overflow-x: hidden;
+    overflow-y: auto;
+    .item {
+        display: grid;
+        grid-template-areas:
+            "thumb title"
+            "thumb author"
+            "thumb status" ;
+        grid-template-columns: var(--thumbnails-size) auto;
+        grid-gap: var(--grid-gap);
+    }
+    .thumb {
+        grid-area: thumb;
+        height: var(--thumbnails-size);
+    }
+    .title {
+        grid-area: title;
+    }
+    .author {
+        grid-area: author;
+    }
+    .status {
+        grid-area: status;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 991px),
+screen and (orientation: portrait) and (min-width: 768px) {
+    .list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (orientation: landscape) and (min-width: 992px) {
+    .list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    main.show {
+        .list {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}

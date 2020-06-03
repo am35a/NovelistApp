@@ -1,0 +1,105 @@
+{
+    "books": [
+        {
+            "id": 11,
+            "lastEdited": "2019-10-24T18:25:43.511Z",
+            "title": "Lorem, ipsum dolor.",
+            "author": "Iste, recusandae",
+            "annotation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit itaque corrupti dolores id, ipsa est iure nemo inventore placeat quisquam voluptates facilis et animi. Unde mollitia facilis voluptatum dolorem voluptatibus.",
+            "rate": 0,
+            "status": "underway",
+            "chapters": [
+                {
+                    "id": 23,
+                    "order": 1,
+                    "title": "Intro",
+                    "annotation": "",
+                    "length": 60,
+                    "listen": 60
+                },
+                {
+                    "id": 24,
+                    "order": 2,
+                    "title": "Incidunt voluptate saepe quis.",
+                    "annotation": "Ad modi ipsa neque ullam tempora, laboriosam, recusandae doloribus et sapiente, atque alias. Quod voluptate corrupti atque eum quia iure facere aspernatur, consequatur sapiente optio, minima officia autem eos deserunt.",
+                    "length": 1002,
+                    "listen": 30
+                },
+                {
+                    "id": 22,
+                    "order": 3,
+                    "title": "Eligendi culpa minus facere.",
+                    "annotation": "Debitis consequatur porro officiis recusandae, adipisci distinctio rem soluta mollitia commodi, sed reiciendis molestias voluptas voluptatibus voluptatem, illo ratione in vero voluptates repellendus.",
+                    "length": 791,
+                    "listen": 788
+                },
+                {
+                    "id": 21,
+                    "order": 4,
+                    "title": "Epilogue",
+                    "annotation": "",
+                    "length": 137,
+                    "listen": 0
+                }
+            ],
+            "listening": {
+                "chapter": 1
+            }
+        },
+        {
+            "id": 2,
+            "title": "Vitae, quod amet.",
+            "author": "Quod, odit"
+        },
+        {
+            "id": 1,
+            "title": "Alias, rem veritatis.",
+            "author": "Consequatur"
+        },
+        {
+            "id": 3,
+            "title": "Dolore, quasi repellat.",
+            "author": "Esse Laborum"
+        },
+        {
+            "id": 4,
+            "title": "Provident, dolorum et.",
+            "author": "Commodi Vo."
+        },
+        {
+            "id": 6,
+            "title": "Reprehenderit, officia dicta?",
+            "author": "Deserunt Similique"
+        },
+        {
+            "id": 5,
+            "title": "Harum, laboriosam deserunt.",
+            "author": "Asperiores Nesciunt"
+        },
+        {
+            "id": 10,
+            "title": "Soluta, et placeat.",
+            "author": "Assumenda Exc Epturi"
+        },
+        {
+            "id": 9,
+            "title": "Cum, quisquam commodi!",
+            "author": "Nemo  Delectus"
+        },
+        {
+            "id": 8,
+            "title": "Voluptatem, minus beatae.",
+            "author": "Magnam"
+        },
+        {
+            "id": 7,
+            "title": "Non, necessitatibus? Rerum?",
+            "author": "Magni Nesciunt"
+        }
+    ],
+    "player": {
+        "speed": 0,
+        "speedName": ["normal", "fast", "faster"],
+        "rewind": 25
+    }
+}

@@ -1,0 +1,19 @@
+.menu {
+    display: grid;
+    grid-template-columns: var(--menu-height) auto var(--menu-height) min-content var(--menu-height);
+    // grid-gap: var(--grid-gap);
+    > :first-child,
+    > :last-child,
+    .divider {
+        padding: calc(var(--padding)/2);
+    }
+    > :not(:first-child):not(:last-child):not(.divider) {
+        padding: var(--padding);
+    }
+}
+@media screen and (orientation: landscape) and (max-width: 991px) {
+    .menu {
+        grid-template-columns: auto;
+        grid-template-rows: var(--menu-height) auto var(--menu-height) min-content var(--menu-height);
+    }
+}

@@ -1,0 +1,146 @@
+.player {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--icon-size) auto var(--icon-size) auto calc(var(--icon-size)*1.5) calc(var(--icon-size)*3) auto;
+    grid-gap: var(--padding);
+    padding: var(--padding);
+    &.bkg {
+        position: relative;
+        padding: 0;
+        z-index: -1;
+        overflow: hidden;
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;            
+            filter: blur(25px);
+            transform: scale(1.2);
+            opacity: .75;
+        }
+    }
+    + section {
+        z-index: 1;
+    }
+    &.share,
+    &.rate,
+    &.description,
+    &.contents {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: var(--icon-size) auto;
+        overflow: hidden;
+        .player-menu {
+            grid-template-columns: auto var(--icon-size);
+            :nth-last-child(2) { grid-column: 1~"/"2; }
+            :nth-last-child(1) { grid-column: 2~"/"3; }
+        }
+        > :last-child {
+            overflow-y: auto;
+        }
+    }
+    .player-menu {
+        display: grid;
+        grid-template-columns: repeat(4, var(--icon-size)) auto repeat(2, var(--icon-size));
+        grid-auto-rows: var(--icon-size);
+        grid-gap: var(--grid-gap);
+        grid-column: 1~"/"2;
+        grid-row: 1~"/"2;
+        :nth-last-child(2) { grid-column: 6~"/"7; }
+        :nth-last-child(1) { grid-column: 7~"/"8; }
+    }
+    .player-progress {
+        margin-top: auto;
+        grid-column: 1~"/"2;
+        grid-row: 2~"/"3;
+    }
+    .player-speed {
+        display: grid;
+        grid-template-columns: var(--icon-size) auto;
+        grid-auto-rows: var(--icon-size);
+        // grid-gap: var(--grid-gap);
+        grid-column: 1~"/"2;
+        grid-row: 3~"/"4;
+        justify-self: center;
+        > * {
+            grid-column: 1~"/"2;
+            grid-row: 1~"/"2;
+        }
+        // :nth-child(1) {
+        //     grid-column: 1~"/"2;
+        //     grid-row: 1~"/"2;
+        // }
+        // :nth-child(2) {
+        //     grid-column: 2~"/"3;
+        //     grid-row: 1~"/"2;
+        // }
+    }
+    .player-cover {
+        position: relative;
+        grid-column: 1~"/"2;
+        grid-row: 4~"/"5;
+    }
+    .player-part {
+        display: grid;
+        grid-template-columns: calc(var(--icon-size)*1.5) auto calc(var(--icon-size)*1.5);
+        grid-auto-rows: calc(var(--icon-size)*1.5);
+        grid-gap: var(--padding);
+        grid-column: 1~"/"2;
+        grid-row: 5~"/"6;
+        :first-child {
+            grid-column: 1~"/"2;
+        }
+        :last-child {
+            grid-column: 3~"/"4;
+        }
+    }
+    .player-controls {
+        display: grid;
+        grid-template-columns: calc(var(--icon-size)*2) calc(var(--icon-size)*4) calc(var(--icon-size)*2);
+        grid-auto-rows: calc(var(--icon-size)*4);
+        grid-gap: var(--grid-gap);
+        grid-column: 1~"/"2;
+        grid-row: 6~"/"7;
+        padding: var(--padding);
+        align-self: center;
+        justify-self: center;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 991px),
+screen and (orientation: portrait) and (min-width: 768px) {
+    .player {
+        grid-template-columns: 2fr 3fr;
+        grid-template-rows: var(--icon-size) auto var(--icon-size) auto;
+        .player-menu {
+            grid-column: 1~"/"3;
+            grid-row: 1~"/"2;
+        }
+        .player-progress {
+            grid-column: 2~"/"3;
+            grid-row: 2~"/"3;
+        }
+        .player-speed {
+            grid-column: 2~"/"3;
+            grid-row: 3~"/"4;
+        }
+        .player-cover {
+            grid-column: 1~"/"2;
+            grid-row: 2~"/"6;
+        }
+        .player-part {
+            margin-top: auto;
+            grid-column: 2~"/"3;
+            grid-row: 4~"/"5;
+        }
+        .player-controls {
+            grid-column: 2~"/"3;
+            grid-row: 5~"/"6;
+        }
+    
+    }
+}
