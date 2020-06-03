@@ -6,7 +6,8 @@
             "title": "Lorem, ipsum dolor.",
             "author": "Iste, recusandae",
             "annotation": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit itaque corrupti dolores id, ipsa est iure nemo inventore placeat quisquam voluptates facilis et animi. Unde mollitia facilis voluptatum dolorem voluptatibus.",
-            "rate": 0,
+            "rate": 2.10,
+            "vote": "0",
             "status": "underway",
             "chapters": [
                 {

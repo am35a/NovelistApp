@@ -119,3 +119,28 @@ each(@selectors, {
         text-transform: uppercase;
     }
 }
+
+
+.rate {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: repeat(5, var(--rate-height));
+    grid-auto-rows: var(--rate-height);
+    svg {
+        // &:nth-child(1){ grid-column: 1~"/"2; }
+        // &:nth-child(2){ grid-column: 2~"/"3; }
+        // &:nth-child(3){ grid-column: 3~"/"4; }
+        // &:nth-child(4){ grid-column: 4~"/"5; }
+        // &:nth-child(5){ grid-column: 5~"/"6; }
+        // grid-row: 1~"/"2;
+    }
+    input {
+        position: absolute;
+        grid-column: 1~"/"6;
+        width: 100%;
+        height: 100%;
+        // grid-row: 1~"/"2;
+        padding-left: calc(var(--rate-height)/3);
+        padding-right: calc(var(--rate-height)/3);
+    }
+}
