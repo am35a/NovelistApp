@@ -147,8 +147,6 @@
     import ShareBook        from './components/ShareBook.vue'
     import FiveStarRate     from './components/FiveStarRate.vue'
 
-    
-
     // import axios from 'axios'
 
     export default {
