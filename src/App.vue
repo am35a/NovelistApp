@@ -250,7 +250,7 @@
                 this.getPlayChapterData()
             },
             playerRewind(direction) {
-                let listen = this.playChapter.listen + this.player.rewind * direction
+                let listen = parseInt(this.playChapter.listen) + this.player.rewind * direction
                 if(listen < 0)
                     return this.playChapter.listen = 0
                 if(listen > this.playChapter.length)
