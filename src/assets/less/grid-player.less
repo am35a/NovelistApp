@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: var(--icon-size) auto var(--icon-size) auto calc(var(--icon-size)*1.5) calc(var(--icon-size)*3) auto;
-    grid-gap: var(--padding);
+    grid-gap: var(--grid-gap);
     padding: var(--padding);
     &.bkg {
         position: relative;
@@ -84,12 +84,30 @@
         position: relative;
         grid-column: 1~"/"2;
         grid-row: 4~"/"5;
+        display: grid;
+        .vinyl {
+            position: relative;
+            align-self: center;
+            border: calc(var(--key-rem) * 1.5) solid #333;
+            &::before {
+                position: absolute;
+                content: "";
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle, currentColor var(--key-rem), #333 var(--key-rem), #333 20%, transparent 20%);
+                z-index: 1;
+            }
+            // img {
+            // }
+        }
     }
     .player-part {
         display: grid;
         grid-template-columns: calc(var(--icon-size)*1.5) auto calc(var(--icon-size)*1.5);
         grid-auto-rows: calc(var(--icon-size)*1.5);
-        grid-gap: var(--padding);
+        grid-gap: var(--grid-gap);
         grid-column: 1~"/"2;
         grid-row: 5~"/"6;
         :first-child {

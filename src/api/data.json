@@ -103,5 +103,14 @@
         "speed": 0,
         "speedName": ["normal", "fast", "faster"],
         "rewind": 25
+    },
+    "user": {
+        "id": 7,
+        "created": "2019-10-23T18:25:43.511Z",
+        "name": "Solomon Ray",
+        "status": "I'm not in the mood",
+        "phone": "555-1234-567",
+        "email": "tester@noveli.st",
+        "location": "USA / Texas"
     }
 }

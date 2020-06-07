@@ -7,7 +7,7 @@
 
         <template v-if="isSectionPlayer">
             <section class="player bkg">
-                <img class="rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/cover.jpg`" alt="">
+                <img class="rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/cover.jpg`" :alt="playBook.title">
             </section>
             <section v-show="!isSectionShare && !isSectionRate && !isSectionDescription && !isSectionContents" class="player">
                 <div class="player-menu">
@@ -44,7 +44,12 @@
                         {{ playerSpeedName }}
                     </div>
                 </div>
-                <img class="player-cover m-auto w-100 rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/preview.jpg`" alt="">
+                <div class="player-cover">
+                    <div class="vinyl overflow-hidden rounded-circle shadow">
+                        <img class="m-auto w-100 spin" :class="{ running: playStartDisable}" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/preview.jpg`" alt="">
+                    </div>
+                </div>
+                <!-- <img class="player-cover m-auto w-100 rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/preview.jpg`" alt=""> -->
                 <div class="player-part">
                     <svg v-if="playBookPartPrevDisable" @click="palyerSelectChapter(-1)" class="part-prev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
@@ -163,8 +168,9 @@
         },
         data() {
             return {
-                isAuthenticated: true,
+                isAuthenticated: false,
 
+                user: {},           // for data for user
                 books: [],          // for data for all user books
                 player: {},         // for saved player date
                 playBook: {},       // for play book date
@@ -351,8 +357,9 @@
         mounted() {
             if (this.isAuthenticated)
                 this.showSectionNovelist = false
-            this.books = require('./api/data.json').books
+            this.user = require('./api/data.json').user
             this.player = require('./api/data.json').player
+            this.books = require('./api/data.json').books
             /*
             axios
                 .get(require('./api/data.json'))

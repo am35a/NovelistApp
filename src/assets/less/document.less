@@ -128,19 +128,6 @@ each(@selectors, {
     }
 }
 
-.share-grid {
-    display: inline-grid;
-    grid-template-columns: repeat(2, calc(var(--icon-size)*2));
-    grid-auto-rows: calc(var(--icon-size)*2);
-    grid-gap: calc(var(--grid-gap)*2);
-}
-@media screen and (orientation: landscape) and (max-width: 991px),
-screen and (orientation: portrait) and (min-width: 768px) {
-    .share-grid {
-        grid-template-columns: repeat(6, calc(var(--icon-size)*2));
-    }
-}
-
 .rate {
     position: relative;
     display: inline-grid;
@@ -162,5 +149,44 @@ screen and (orientation: portrait) and (min-width: 768px) {
         // grid-row: 1~"/"2;
         padding-left: calc(var(--rate-height)/3);
         padding-right: calc(var(--rate-height)/3);
+    }
+}
+
+.account {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    min-width: calc(var(--key-rem) * 40);
+    justify-self: center;
+
+    header {
+        align-self: center;
+    }
+    .body {
+        align-self: center;
+        .row {
+            display: grid;
+            grid-template-columns: var(--icon-size) auto;
+            grid-row: var(--icon-size);
+            :last-child {
+                padding-left: var(--padding);
+                align-self: center;
+                font-size: 90%;
+            }
+        }
+    }
+}
+
+.spin {
+    animation: spin 24s linear infinite;
+    animation-play-state: paused;
+    &.running {
+        animation-play-state: running;
+    }
+}
+@keyframes spin {
+    100% {
+        transform:rotate(360deg);
     }
 }
