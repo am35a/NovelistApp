@@ -1,4 +1,5 @@
-# novelist-app
+# Novelist Speaking Books 
+[Preview app](http://mobitoon.ru/novelist/app)
 
 ## Project setup
 ```
