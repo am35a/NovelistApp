@@ -168,7 +168,7 @@
         },
         data() {
             return {
-                isAuthenticated: false,
+                isAuthenticated: true,
 
                 user: {},           // for data for user
                 books: [],          // for data for all user books
@@ -185,8 +185,11 @@
                 showSectionDescription: false,
                 showSectionContents: false,
 
+                // books list sort types - default, title
+                sortBooksListType: "default",
+
                 // axios catch error
-                errorGetData: false,
+                // errorGetData: false,
 
                 // player
                 isPlayerStarted: false
@@ -287,10 +290,16 @@
             },
 
 
-
             // .find(obj => obj.id == 3)
         },
         computed: {
+            // sort books list by types 
+            sortBooksList() {
+                if( this.sortBooksListType === "title" )
+                    return [...this.books].sort((a, b) => a.title.localeCompare(b.title))
+
+                return this.books
+            },
 
             // hide or show sections
             isSectionSignIn() {
