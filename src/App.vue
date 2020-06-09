@@ -298,6 +298,10 @@
                 if( this.sortBooksListType === "title" )
                     return [...this.books].sort((a, b) => a.title.localeCompare(b.title))
 
+                if( this.sortBooksListType === "eltit" )
+                    return [...this.books].sort((a, b) => a.title.localeCompare(b.title)).reverse()
+                    
+
                 return this.books
             },
 
