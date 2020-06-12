@@ -7,6 +7,12 @@
         </svg>
         <template v-if="$parent.isAuthenticated">
             <div></div>
+            <svg class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <!-- <path d="M19,2H3v20h16V2z M5,4h5v8l-2.5-1.5L5,12V4z M21,22h-1V2h1V22z"/> -->
+                <!-- <path d="M3,22h16V2H3V22z M5.4,7.4l2.2,2.2L13.2,4l1.4,1.4l-7,7L4,8.8L5.4,7.4z M21,2v20h-1V2H21z"/> -->
+                <!-- <path d="M3,22h16V2H3V22z M13,7h2v2h-2V7z M9,7h2v2H9V7z M5,7h2v2H5V7z M21,2v20h-1V2H21z"/> -->
+                <!-- <path d="M20.4,21.6L20,22v0h0l-1,1l-1-1H4V8L2,6l1.4-1.4L4,5.2v0l16,16v0L20.4,21.6z M21,2v17.4l1,1V2H21z M20,2H4v0.4l16,16V2z"/> -->
+            </svg>
             <svg @click="sortBooksListByTitle" class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path v-show="$parent.sortBooksListType === 'default'" d="M14.94 4.66h-4.72l2.36-2.36zm-4.69 14.71h4.66l-2.33 2.33zM6.1 6.27L1.6 17.73h1.84l.92-2.45h5.11l.92 2.45h1.84L7.74 6.27H6.1zm-1.13 7.37l1.94-5.18 1.94 5.18H4.97zm10.76 2.5h6.12v1.59h-8.53v-1.29l5.92-8.56h-5.88v-1.6h8.3v1.26l-5.93 8.6z"/> -->
                 <path v-show="$parent.sortBooksListType === 'eltit'" d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.51 0-2.91-.49-4.06-1.3l-1.42 1.44C8.04 20.3 9.94 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/>
@@ -37,6 +43,8 @@
                         break
                 }
             }
+            // https://abcinblog.blogspot.com/2019/01/js-es6-arrays.html
+            // .filter((x) => { return x > 80 })   
         }
     }
 </script>
