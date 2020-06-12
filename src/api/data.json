@@ -47,56 +47,6 @@
             "listening": {
                 "chapter": 1
             }
-        },
-        {
-            "id": 2,
-            "title": "Vitae, quod amet.",
-            "author": "Quod, odit"
-        },
-        {
-            "id": 1,
-            "title": "Alias, rem veritatis.",
-            "author": "Consequatur"
-        },
-        {
-            "id": 3,
-            "title": "Dolore, quasi repellat.",
-            "author": "Esse Laborum"
-        },
-        {
-            "id": 4,
-            "title": "Provident, dolorum et.",
-            "author": "Commodi Vo."
-        },
-        {
-            "id": 6,
-            "title": "Reprehenderit, officia dicta?",
-            "author": "Deserunt Similique"
-        },
-        {
-            "id": 5,
-            "title": "Harum, laboriosam deserunt.",
-            "author": "Asperiores Nesciunt"
-        },
-        {
-            "id": 10,
-            "title": "Soluta, et placeat.",
-            "author": "Assumenda Exc Epturi"
-        },
-        {
-            "id": 9,
-            "title": "Cum, quisquam commodi!",
-            "author": "Nemo  Delectus"
-        },
-        {
-            "id": 8,
-            "title": "Voluptatem, minus beatae.",
-            "author": "Magnam"
-        },
-        {
-            "id": 7,
-            "title": "Non, necessitatibus? Rerum?",
-            "author": "Magni Nesciunt"
         }
     ],
     "player": {

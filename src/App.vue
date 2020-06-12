@@ -287,10 +287,7 @@
             },
             getPlayChapterData() {
                 this.playChapter = this.playBook.chapters[this.playBook.listening.chapter]
-            },
-
-
-            // .find(obj => obj.id == 3)
+            }
         },
         computed: {
             // sort books list by types 
