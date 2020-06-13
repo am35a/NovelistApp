@@ -87,6 +87,7 @@
         display: grid;
         .vinyl {
             position: relative;
+            display: grid;
             align-self: center;
             border: calc(var(--key-rem) * 1.5) solid #333;
             &::before {
@@ -99,8 +100,6 @@
                 background: radial-gradient(circle, currentColor var(--key-rem), #333 var(--key-rem), #333 20%, transparent 20%);
                 z-index: 1;
             }
-            // img {
-            // }
         }
     }
     .player-part {
