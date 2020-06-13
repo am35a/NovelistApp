@@ -53,12 +53,12 @@ hr {
     }
     input {
         &:not([type="button"]) {
-            background-color: #fff;
+            background-color: #f8f9fa;
             color: #343a40;
         }
         &[type="button"]{
             background-color: #343a40;
-            color: #fff;
+            color: #f8f9fa;
         }
         width: 100%;
         display: block;
@@ -175,6 +175,21 @@ each(@selectors, {
                 font-size: 90%;
             }
         }
+    }
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    z-index: 1;
+    div {
+        display: grid;
+        grid-template-columns: auto var(--icon-size);
+        grid-gap: var(--grid-gap);
+        justify-items: end;
+        align-items: center;
+        padding: calc(var(--padding) * .5) var(--padding);
     }
 }
 

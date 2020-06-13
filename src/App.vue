@@ -4,6 +4,7 @@
         <SectionNovelist v-if="showSectionNovelist" class="novelist"></SectionNovelist>
         <SectionAccount v-if="showSectionAccount" class="account"></SectionAccount>
         <SectionList v-if="isSectionList" class="list"></SectionList>
+        <SectionFilters v-if="isSectionFilters" class="filters"></SectionFilters>
 
         <template v-if="isSectionPlayer">
             <section class="player bkg">
@@ -148,6 +149,7 @@
     import SectionNovelist  from './components/SectionNovelist.vue'
     import SectionAccount   from './components/SectionAccount.vue'
     import SectionList      from './components/SectionList.vue'
+    import SectionFilters   from './components/SectionFilters.vue'
     import SectionMenu      from './components/SectionMenu.vue'
 
     import ShareBook        from './components/ShareBook.vue'
@@ -162,6 +164,7 @@
             SectionNovelist,
             SectionAccount,
             SectionList,
+            SectionFilters,
             SectionMenu,
 
             ShareBook,
@@ -180,6 +183,7 @@
                 // sectionList: false,
                 showSectionNovelist: false,
                 showSectionAccount: false,
+                showSectionFilters: false,
                 showSectionPlayer: false,
                 showSectionShare: false,
                 showSectionRate: false,
@@ -206,6 +210,8 @@
 
                 this.playerClose()
                 this.toggleSectionAccount()
+                if(this.showSectionFilters)
+                    this.toggleSectionFilters()
             },
 
             // toggle sections
@@ -224,16 +230,19 @@
 
                 this.showSectionAccount = !this.showSectionAccount
             },
-            toggleSectionShare(){
+            toggleSectionFilters() {
+                this.showSectionFilters = !this.showSectionFilters
+            },
+            toggleSectionShare() {
                 this.showSectionShare = !this.showSectionShare
             },
-            toggleSectionRate(){
+            toggleSectionRate() {
                 this.showSectionRate = !this.showSectionRate
             },
-            toggleSectionDescription(){
+            toggleSectionDescription() {
                 this.showSectionDescription = !this.showSectionDescription
             },
-            toggleSectionContents(){
+            toggleSectionContents() {
                 this.showSectionContents = !this.showSectionContents
             },
 
@@ -333,6 +342,15 @@
                     return false
 
                 return true
+            },
+            isSectionFilters() {
+                if( this.showSectionNovelist )
+                    return false
+
+                if( this.showSectionAccount )
+                    return false
+                    
+                return this.showSectionFilters
             },
             isSectionPlayer() {
                 return this.showSectionPlayer
