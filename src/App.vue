@@ -320,10 +320,7 @@
 
             // hide or show sections
             isSectionSignIn() {
-                if ( this.isAuthenticated )
-                    return false
-
-                if ( this.showSectionNovelist )
+                if ( this.isAuthenticated || this.showSectionNovelist)
                     return false
 
                 // if ( this.isSectionNovelist && this.isAuthenticated )
@@ -332,22 +329,13 @@
                 return true
             },
             isSectionList() {
-                if( !this.isAuthenticated )
-                    return false
-
-                if( this.showSectionNovelist )
-                    return false
-
-                if( this.showSectionAccount )
+                if( !this.isAuthenticated || this.showSectionNovelist || this.showSectionAccount)
                     return false
 
                 return true
             },
             isSectionFilters() {
-                if( this.showSectionNovelist )
-                    return false
-
-                if( this.showSectionAccount )
+                if( this.showSectionNovelist || this.showSectionAccount || this.isSectionPlayer)
                     return false
                     
                 return this.showSectionFilters
