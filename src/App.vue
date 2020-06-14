@@ -115,7 +115,16 @@
                     </svg>
                 </div>
                 <div class="px-2">
-                    <div class="text-center mb-2">{{ playBook.title }}</div>
+                    <p class="text-center">
+                        {{ playBook.title }}
+                    </p>
+                    <p>
+                        <small>
+                            Author: {{ playBook.author }}
+                            <br>
+                            Genres: {{ playBook.genres }}
+                        </small>
+                    </p>
                     {{ playBook.annotation }}
                 </div>
             </section>
