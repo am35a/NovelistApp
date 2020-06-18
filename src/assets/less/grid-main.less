@@ -38,6 +38,7 @@ main {
         grid-row: 2~"/"3;
     }
     &.show {
+        .filters,
         .list { display: none; }
         .player { display: inherit; }
         .menu { display: none; }
@@ -74,6 +75,9 @@ main {
         &.show {
             grid-template-columns: 1fr;
             grid-template-rows: 3fr 2fr var(--menu-height);
+            .filters {
+                display: flex;
+            }
             .list {
                 display: grid;
                 grid-row: 1~"/"2;
@@ -106,6 +110,9 @@ main {
         &.show {
             grid-template-columns: 3fr 2fr;
             grid-template-rows: auto var(--menu-height);
+            .filters {
+                display: flex;
+            }
             .list {
                 display: grid;
                 grid-column: 1~"/"2;

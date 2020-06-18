@@ -124,7 +124,8 @@
     "player": {
         "speed": 0,
         "speedName": ["normal", "fast", "faster"],
-        "rewind": 25
+        "rewind": 25,
+        "listened": false
     },
     "user": {
         "id": 7,
