@@ -185,9 +185,8 @@ each(@selectors, {
     z-index: 1;
     div {
         display: grid;
-        grid-template-columns: auto var(--icon-size);
+        grid-template-columns: var(--icon-size) auto;
         grid-gap: var(--grid-gap);
-        justify-items: end;
         align-items: center;
         padding: calc(var(--padding) * .5) var(--padding);
     }

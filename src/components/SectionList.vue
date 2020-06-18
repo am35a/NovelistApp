@@ -1,6 +1,12 @@
 <template>
     <section>
-        <div class="item" v-for="book in $parent.sortBooksList" :key="book.id" @click="$parent.playerOpen($parent.books.findIndex(object => object.id === book.id))"> <!--@click="playerOpen(index)"--> <!-- :class="[showPlayer == book.id ? 'opa-40' : '']"-->
+        <div
+            class="item"
+            v-show="isItemHideAsListened(completed(book.chapters))"
+            v-for="book in $parent.sortBooksList"
+            :key="book.id"
+            @click="$parent.playerOpen($parent.books.findIndex(object => object.id === book.id))"
+        > <!-- :class="[showPlayer == book.id ? 'opa-40' : '']"-->
             <img class="thumb rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${book.id}/preview.jpg`" :alt="`${book.title}`">
             <div class="title text-truncate">{{ book.title }}</div>
             <small class="author opa-40">{{ book.author }}</small>
@@ -22,6 +28,12 @@
                      listen += parseInt(chapters[index].listen)
                 }
                 return parseInt(listen / length * 100)
+            },
+            isItemHideAsListened(bookListen){
+                if (bookListen === 100 && this.$parent.player.listened == false)
+                    return false
+                else
+                    return true
             }
         }
     }

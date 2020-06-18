@@ -329,7 +329,7 @@
 
             // hide or show sections
             isSectionSignIn() {
-                if ( this.isAuthenticated || this.showSectionNovelist)
+                if ( this.isAuthenticated || this.showSectionNovelist )
                     return false
 
                 // if ( this.isSectionNovelist && this.isAuthenticated )
@@ -338,13 +338,14 @@
                 return true
             },
             isSectionList() {
-                if( !this.isAuthenticated || this.showSectionNovelist || this.showSectionAccount)
+                if( !this.isAuthenticated || this.showSectionNovelist || this.showSectionAccount )
                     return false
 
                 return true
             },
             isSectionFilters() {
-                if( this.showSectionNovelist || this.showSectionAccount || this.isSectionPlayer)
+                // || this.isSectionPlayer
+                if( this.showSectionNovelist || this.showSectionAccount )
                     return false
                     
                 return this.showSectionFilters
