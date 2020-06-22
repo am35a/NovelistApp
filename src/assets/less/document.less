@@ -5,6 +5,7 @@ html {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: #212529dd;
     background-color: rgba(20,40,60,0.1);
+    overflow: hidden;
 }
 
 *,
@@ -179,16 +180,20 @@ each(@selectors, {
 }
 
 .filters {
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f9fa;
+    display: grid;
     z-index: 1;
     div {
-        display: grid;
-        grid-template-columns: var(--icon-size) auto;
-        grid-gap: var(--grid-gap);
-        align-items: center;
-        padding: calc(var(--padding) * .5) var(--padding);
+        display: flex;
+        flex-direction: column;
+        padding: var(--padding);
+        background-color: #f8f9fa;
+        div {
+            display: grid;
+            grid-template-columns: var(--icon-size) auto;
+            grid-gap: var(--grid-gap);
+            align-items: center;
+            padding: calc(var(--padding) * .5) var(--padding);
+        }
     }
 }
 
@@ -203,4 +208,16 @@ each(@selectors, {
     100% {
         transform:rotate(360deg);
     }
+}
+
+.slide-fade-enter-active {
+    transition: all 1.25s ease-in 1s;
+}
+.slide-fade-leave-active {
+    transition: all 1.25s ease-out 1s;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+    transform: translateX(calc(var(--key-rem) * 5));
+    opacity: 0;
 }

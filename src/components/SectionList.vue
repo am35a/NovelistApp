@@ -11,7 +11,7 @@
             <div class="title text-truncate">{{ book.title }}</div>
             <small class="author opa-40">{{ book.author }}</small>
             <div class="status" :class="[ completed(book.chapters) != 100 ? 'bg-warning rounded-left' : 'bg-success rounded' ]" :style="{ width: `${completed(book.chapters)}%` }"></div>
-            <div class="status text-center">{{ completed(book.chapters) }}%</div>
+            <div class="status m-auto">{{ completed(book.chapters) }}%</div>
         </div>
     </section>
 </template>
