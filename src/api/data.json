@@ -73,7 +73,7 @@
                     "title": "II - Commodi",
                     "annotation": "Autem, asperiores consectetur!",
                     "length": 1002,
-                    "listen": 30
+                    "listen": 0
                 },
                 {
                     "id": 38,
@@ -125,7 +125,7 @@
         "speed": 0,
         "speedName": ["normal", "fast", "faster"],
         "rewind": 25,
-        "listened": false
+        "listened": true
     },
     "user": {
         "id": 7,
