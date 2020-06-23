@@ -6,8 +6,8 @@
             v-for="book in $parent.sortBooksList"
             :key="book.id"
             @click="$parent.playerOpen($parent.books.findIndex(object => object.id === book.id))"
-        > <!-- :class="[showPlayer == book.id ? 'opa-40' : '']"-->
-            <img class="thumb rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${book.id}/preview.jpg`" :alt="`${book.title}`">
+        >
+            <img class="thumb rounded-circle shadow-sm spin" :class="{ running: runningSpin(book.id)}" :src="`http://mobitoon.ru/novelist/images/books/${book.id}/preview.jpg`" :alt="`${book.title}`">
             <div class="title text-truncate">{{ book.title }}</div>
             <small class="author text-black-50">{{ book.author }}</small>
             <div class="status bar" :class="[ completed(book.chapters) != 100 ? 'bg-secondary' : 'bg-success' ]" :style="{ width: `${completed(book.chapters)}%` }"></div>
@@ -46,10 +46,16 @@
                 return listen
             },
             isItemHideAsListened(bookListen) {
-                if (bookListen === 100 && this.$parent.player.listened == false)
+                if (bookListen === 100 && this.$parent.player.listened === false)
                     return false
                 else
                     return true
+            },
+            runningSpin(id) {
+                if(this.$parent.playBook.id === id && this.$parent.isPlayerStarted)
+                    return true
+                else
+                    return false
             }
         }
     }
