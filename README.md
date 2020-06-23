@@ -1,5 +1,5 @@
 # Novelist Speaking Books 
-[Preview App UI (web)](http://mobitoon.ru/novelist/app)
+[Preview App UI (web)](http://mobitoon.ru/novelist/app)  
 [Preview App UI (apk)](http://mobitoon.ru/novelist/app/app-debug.apk)
 
 ## Project setup
