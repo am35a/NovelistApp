@@ -10,10 +10,11 @@
             <img class="thumb rounded-circle shadow-sm spin" :class="{ running: runningSpin(book.id)}" :src="`http://mobitoon.ru/novelist/images/books/${book.id}/preview.jpg`" :alt="`${book.title}`">
             <div class="title text-truncate">{{ book.title }}</div>
             <small class="author text-black-50">{{ book.author }}</small>
+            <div class="status bar bg-secondary opa-20"></div>
             <div class="status bar" :class="[ completed(book.chapters) != 100 ? 'bg-secondary' : 'bg-success' ]" :style="{ width: `${completed(book.chapters)}%` }"></div>
             <div class="status m-auto">{{ completed(book.chapters) }}%</div>
-            <small class="status text-black-50 mr-auto">{{ totalListen(book.chapters) }}</small>
-            <small class="status text-black-50 ml-auto">{{ totalLength(book.chapters) }}</small>
+            <small class="status text-black-50 mr-auto my-auto">{{ totalListen(book.chapters) }}</small>
+            <small class="status text-black-50 ml-auto my-auto">{{ totalLength(book.chapters) }}</small>
         </div>
     </section>
 </template>
