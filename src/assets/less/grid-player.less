@@ -55,9 +55,21 @@
         :nth-last-child(1) { grid-column: 7~"/"8; }
     }
     .player-progress {
+        display: grid;
         margin-top: auto;
         grid-column: 1~"/"2;
         grid-row: 2~"/"3;
+        grid-auto-rows: var(--icon-size);
+        > * {
+            grid-column: 1~"/"2;
+            grid-row: 1~"/"2;
+        }
+        .player-range {
+            align-self: center;
+            margin-top: calc(var(--key-rem) * -1);
+            height: var(--range-height);
+            background-color: currentColor;
+        }
     }
     .player-speed {
         display: grid;

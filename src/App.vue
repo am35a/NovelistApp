@@ -33,9 +33,10 @@
                     </svg>
                 </div>
                 <div class="player-progress">
+                    <div class="player-range opa-20"></div>
                     <div class="player-range" :style="{width: `${Math.floor(playChapter.listen / playChapter.length * 1000)/10}%`}"></div>
-                    <small class="player-range-left">{{ playChapter.listen }}</small>
-                    <small class="player-range-total">{{ playChapter.length }}</small>
+                    <small class="mt-auto mr-auto">{{ playChapter.listen }}</small>
+                    <small class="mt-auto ml-auto">{{ playChapter.length }}</small>
                     <input class="w-100 opa-0" type="range" v-model="playChapter.listen" min="0" :max="playChapter.length">
                 </div>
                 <div class="player-speed" @click="palyerAddSpeed">
