@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="mb-3">
-            <label for="login">EMail</label>
+            <label for="login">eMail</label>
             <input id="login" type="text" value="your@email.com">
         </div>
         <div class="mb-5">
@@ -9,6 +9,7 @@
             <input type="password" value="123456">
         </div>
         <input @click="$parent.signingIn" type="button" value="Sign In">
+        <input @click="$parent.registration" class="secondary mt-3 bg-transparent" type="button" value="Registration...">
     </section>
 </template>
 
