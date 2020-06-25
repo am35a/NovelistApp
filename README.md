@@ -2,8 +2,9 @@
 [Preview App UI (web)](http://mobitoon.ru/novelist/app)  
 [Preview App UI (apk)](http://mobitoon.ru/novelist/app/app-debug.apk)
 
-![preview books list](http://mobitoon.ru/novelist/app/app/prev-books-2.png)
-![preview player](http://mobitoon.ru/novelist/app/app/prev-player-2.png)
+![preview signin](http://mobitoon.ru/novelist/app/app/prev-enter-3.png)
+![preview books list](http://mobitoon.ru/novelist/app/app/prev-books-3.png)
+![preview player](http://mobitoon.ru/novelist/app/app/prev-player-3.png)
 
 ## Project setup
 ```

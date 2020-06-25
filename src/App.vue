@@ -187,7 +187,7 @@
         },
         data() {
             return {
-                isAuthenticated: true,
+                isAuthenticated: false,
 
                 user: {},           // for data for user
                 books: [],          // for data for all user books
@@ -227,6 +227,9 @@
                 this.toggleSectionAccount()
                 if(this.showSectionFilters)
                     this.toggleSectionFilters()
+            },
+            registration() {
+                window.open('http://noveli.st', '_blank')
             },
 
             // toggle sections
