@@ -9,10 +9,6 @@
             <div></div>
             <svg v-if="$parent.isPlayerStarted && !$parent.showSectionPlayer" @click="$parent.playerShow" class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/>
-                <!-- <path d="M19,2H3v20h16V2z M5,4h5v8l-2.5-1.5L5,12V4z M21,22h-1V2h1V22z"/> -->
-                <!-- <path d="M3,22h16V2H3V22z M5.4,7.4l2.2,2.2L13.2,4l1.4,1.4l-7,7L4,8.8L5.4,7.4z M21,2v20h-1V2H21z"/> -->
-                <!-- <path d="M3,22h16V2H3V22z M13,7h2v2h-2V7z M9,7h2v2H9V7z M5,7h2v2H5V7z M21,2v20h-1V2H21z"/> -->
-                <!-- <path d="M20.4,21.6L20,22v0h0l-1,1l-1-1H4V8L2,6l1.4-1.4L4,5.2v0l16,16v0L20.4,21.6z M21,2v17.4l1,1V2H21z M20,2H4v0.4l16,16V2z"/> -->
             </svg>
             <div v-else></div>
             <svg @click="$parent.toggleSectionFilters" class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
