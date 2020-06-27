@@ -11,11 +11,10 @@
             "thumb title"
             "thumb author"
             "thumb status" ;
-        grid-template-columns: var(--thumbnails-size) auto;
+        grid-template-columns: min-content auto;
         grid-gap: var(--grid-gap);
         .thumb {
             grid-area: thumb;
-            height: var(--thumbnails-size);
         }
         .title {
             grid-area: title;
