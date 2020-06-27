@@ -1,0 +1,23 @@
+.account {
+    display: grid;
+    grid-gap: var(--grid-gap);
+    grid-template-rows: auto min-content;
+    grid-template-columns: auto;
+    grid-template-areas:
+    "splash"
+    "btn-so";
+    justify-self: center;
+    .splash {
+        grid-area: splash;
+        align-self: center;
+    }
+    .btn-so {
+        grid-area: btn-so;
+    }
+    // .thumb {
+    //     width: var(--thumbnails-size);
+    //     height: var(--thumbnails-size);
+    //     object-fit: cover;
+    //     object-position: center;        
+    // }
+}

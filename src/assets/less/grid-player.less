@@ -4,11 +4,13 @@
     grid-template-rows: var(--icon-size) auto var(--icon-size) auto calc(var(--icon-size)*1.5) calc(var(--icon-size)*3) auto;
     grid-gap: var(--grid-gap);
     padding: var(--padding);
+    color: fadeout(@dark-color, 20%);
     &.bkg {
         position: relative;
         padding: 0;
         z-index: -1;
         overflow: hidden;
+        background-color: fadeout(@light-color, 20%);
         img {
             position: absolute;
             left: 0;
@@ -101,7 +103,7 @@
             position: relative;
             display: grid;
             align-self: center;
-            border: calc(var(--key-rem) * 1.5) solid #333;
+            border: var(--key-rem) solid @dark-color;
             &::before {
                 position: absolute;
                 content: "";
@@ -109,7 +111,7 @@
                 top: 0;
                 right: 0;
                 bottom: 0;
-                background: radial-gradient(circle, currentColor var(--key-rem), #333 var(--key-rem), #333 20%, transparent 20%);
+                background: radial-gradient(circle, currentColor var(--key-rem), @dark-color var(--key-rem), @dark-color calc(var(--key-rem) * 6), transparent calc(var(--key-rem) * 6));
                 z-index: 1;
             }
         }

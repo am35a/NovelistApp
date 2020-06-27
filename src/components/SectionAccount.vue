@@ -1,12 +1,19 @@
 <template>
     <section>
-        <header class="text-center">
+        <div class="splash text-center">
             <img class="thumb rounded-circle shadow-sm" src="http://mobitoon.ru/novelist/images/users/0/preview.svg" alt="Username">
-            <div class="my-1"><b>{{ $parent.user.name }}</b></div>
-            <div>{{ $parent.user.status }}</div>
-        </header>
-        <div class="body mb-3">
-            <!-- <div class="row mb-1">
+            <div class="my-1">{{ $parent.user.name }}</div>
+            <div class="text-uppercase display-5">
+                <div>{{ $parent.user.status }}</div>
+            </div>
+        </div>
+            <div class="btn-so">
+                <button @click="$parent.signingOut" class="button-block button-light button-scope button-round" type="button">
+                    Sign Out
+                </button>
+            </div>
+        <!--div class="body mb-3">
+            <div class="row mb-1">
                 <svg class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
                 </svg>
@@ -29,9 +36,9 @@
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
                 <div>{{ $parent.user.location }}</div>
-            </div> -->
+            </div>
             <input @click="$parent.signingOut" type="button" value="Sign Out">
-        </div>
+        </div> -->
     </section>
 </template>
 

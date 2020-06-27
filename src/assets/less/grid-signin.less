@@ -1,0 +1,54 @@
+.signin {
+    // position: relative;
+    display: grid;
+    grid-gap: var(--grid-gap);
+    grid-template-rows: auto repeat(5, min-content);
+    grid-template-columns: auto auto;
+    grid-template-areas:
+    "splash splash"
+    "inp-em inp-em"
+    "inp-pw inp-pw"
+    "errors errors"
+    "btn-fp btn-su"
+    "btn-si btn-si";
+    justify-self: center;
+    .splash {
+        grid-area: splash;
+        align-self: center;
+    }
+    .inp-em {
+        grid-area: inp-em;
+    }
+    .inp-pw {
+        grid-area: inp-pw;
+    }
+    .errors {
+        display: grid;
+        grid-area: errors;
+        min-height: var(--icon-size);
+        align-items: center;
+        justify-items: center;
+    }
+    .btn-fp {
+        grid-area: btn-fp;
+    }
+    .btn-su {
+        grid-area: btn-su;
+    }
+    .btn-si {
+        grid-area: btn-si;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 767px) {
+    .signin {
+        grid-template-areas:
+        "splash splash inp-em inp-em"
+        "splash splash inp-pw inp-pw"
+        "splash splash errors errors"
+        "splash splash btn-fp btn-su"
+        "splash splash btn-si btn-si";
+        grid-template-columns: 1fr 1fr auto auto;
+        align-self: center;
+    }
+}

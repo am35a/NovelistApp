@@ -228,7 +228,7 @@
                 if(this.showSectionFilters)
                     this.toggleSectionFilters()
             },
-            registration() {
+            signingUp() {
                 window.open('http://noveli.st', '_blank')
             },
 
