@@ -102,13 +102,16 @@ button,
     }
     &.button-link {
         text-decoration: underline;
+        background-color: transparent;
     }
-    // &.button-primary {
-    //     background-color: @primary-color;
-    // }
-    // &.button-opposite {
-    //     background-color: @opposite-color;
-    // }
+    &.button-primary {
+        color: fadeout(@light-color, 20%);
+        background-color: @primary-color;
+    }
+    &.button-opposite {
+        color: fadeout(@light-color, 20%);
+        background-color: @opposite-color;
+    }
 }
 
 .bg-first { background-color: @light-color !important; }
@@ -211,9 +214,9 @@ each(@selectors, {
 
 @media screen and (orientation: portrait) and (max-height: 480px) {
     /* hide anything when virtual keyboard is displayed */
-    .d-none-limit-height {
-        display: none;
-    }
+     .d-none-limit-height {
+         display: none;
+     }
 }
 
 .rate {
@@ -243,7 +246,7 @@ each(@selectors, {
 .filters {
     display: grid;
     z-index: 1;
-    div {
+    > div {
         display: flex;
         flex-direction: column;
         padding: var(--padding);
@@ -270,16 +273,4 @@ each(@selectors, {
     100% {
         transform:rotate(360deg);
     }
-}
-
-.slide-fade-enter-active {
-    transition: all 1.25s ease-in 1s;
-}
-.slide-fade-leave-active {
-    transition: all 1.25s ease-out 1s;
-}
-.slide-fade-enter,
-.slide-fade-leave-to {
-    transform: translateX(calc(var(--key-rem) * 5));
-    opacity: 0;
 }

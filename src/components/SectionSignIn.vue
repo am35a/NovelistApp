@@ -13,7 +13,7 @@
         </div>
         <div class="inp-em">
             <div class="input-custom">
-                <input type="text" value="your@email.com" placeholder="eMail">
+                <input type="text" value="" placeholder="eMail">
                 <div class="underline"></div>
                 <svg class="placeholder-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M22 4H2v16h20V4zm-2 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -22,7 +22,7 @@
         </div>
         <div class="inp-pw">
             <div class="input-custom">
-                <input type="password" value="123456" placeholder="Password">
+                <input type="password" value="" placeholder="Password">
                 <div class="underline"></div>
                 <svg class="placeholder-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12c5.2-1.3 9-6.5 9-12V5L12 1z"/>
