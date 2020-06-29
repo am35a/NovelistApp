@@ -119,7 +119,12 @@ button,
 .bg-primary { background-color: @primary-color !important; }
 .bg-opposite { background-color: @opposite-color !important; }
 
-.text-first { color: @light-color !important; }
+.border-first { border-color: @light-color !important; }
+.border-second { border-color: @second-color !important; }
+.border-primary { border-color: @primary-color !important; }
+.border-opposite { border-color: @opposite-color !important; }
+
+.text-first { color: fadeout(@light-color, 20%) !important; }
 .text-second { color: @second-color !important; }
 .text-primary { color: @primary-color !important; }
 .text-opposite { color: @opposite-color !important; }

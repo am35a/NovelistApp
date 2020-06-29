@@ -13,7 +13,7 @@
             "chapters": [
                 {
                     "id": 23,
-                    "order": 1,
+                    "order": 0,
                     "title": "Intro",
                     "annotation": "",
                     "length": 60,
@@ -21,7 +21,7 @@
                 },
                 {
                     "id": 24,
-                    "order": 2,
+                    "order": 1,
                     "title": "Incidunt voluptate saepe quis.",
                     "annotation": "Ad modi ipsa neque ullam tempora, laboriosam, recusandae doloribus et sapiente, atque alias. Quod voluptate corrupti atque eum quia iure facere aspernatur, consequatur sapiente optio, minima officia autem eos deserunt.",
                     "length": 1002,
@@ -29,7 +29,7 @@
                 },
                 {
                     "id": 22,
-                    "order": 3,
+                    "order": 2,
                     "title": "Eligendi culpa minus facere.",
                     "annotation": "Debitis consequatur porro officiis recusandae, adipisci distinctio rem soluta mollitia commodi, sed reiciendis molestias voluptas voluptatibus voluptatem, illo ratione in vero voluptates repellendus.",
                     "length": 791,
@@ -37,7 +37,7 @@
                 },
                 {
                     "id": 21,
-                    "order": 4,
+                    "order": 3,
                     "title": "Epilogue",
                     "annotation": "",
                     "length": 137,
@@ -61,7 +61,7 @@
             "chapters": [
                 {
                     "id": 20,
-                    "order": 1,
+                    "order": 0,
                     "title": "I - Nisi ad at eligendi",
                     "annotation": "Delectus eos eveniet ex fugit neque sint quos iusto dolores consequatur...",
                     "length": 1202,
@@ -69,7 +69,7 @@
                 },
                 {
                     "id": 11,
-                    "order": 2,
+                    "order": 1,
                     "title": "II - Commodi",
                     "annotation": "Autem, asperiores consectetur!",
                     "length": 1002,
@@ -77,7 +77,7 @@
                 },
                 {
                     "id": 38,
-                    "order": 3,
+                    "order": 2,
                     "title": "III - Eligendi",
                     "annotation": "Ab, atque, esse facere expedita accusamus nesciunt asperiores odit similique porro omnis.",
                     "length": 991,
@@ -85,7 +85,7 @@
                 },
                 {
                     "id": 12,
-                    "order": 4,
+                    "order": 3,
                     "title": "IV - Optio",
                     "annotation": "Minus consequatur soluta ducimus molestiae rem optio voluptatibus fugiat tempora ex, eum enim omnis saepe.",
                     "length": 2137,
@@ -109,7 +109,7 @@
             "chapters": [
                 {
                     "id": 20,
-                    "order": 1,
+                    "order": 0,
                     "title": "",
                     "annotation": "Facere error commodi saepe sequi dolor odit culpa doloribus beatae, in eum quibusdam optio maiores nam expedita et soluta.",
                     "length": 2198,

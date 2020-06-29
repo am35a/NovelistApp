@@ -54,14 +54,14 @@
                 </div>
                 <!-- <img class="player-cover m-auto w-100 rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/preview.jpg`" alt=""> -->
                 <div class="player-part">
-                    <svg v-if="playBookPartPrevDisable" @click="palyerSelectChapter(-1)" class="part-prev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <svg v-if="playBookPartPrevDisable" @click="palyerSwitchChapter(-1)" class="part-prev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
                     </svg>
                     <svg v-else class="part-prev" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
                     <div class="my-auto text-center">
                         {{ playChapter.title ? playChapter.title : playBook.title }}
                     </div>
-                    <svg v-if="playBookPartNextDisable" @click="palyerSelectChapter(1)" class="part-next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <svg v-if="playBookPartNextDisable" @click="palyerSwitchChapter(1)" class="part-next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
                     </svg>
                     <svg v-else class="part-next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
@@ -143,7 +143,12 @@
                 </div>
                 <div class="px-2">
                     <div class="text-center mb-2">{{ playBook.title }}</div>
-                    <div v-for="chapter in playBook.chapters" :key="chapter.order">
+                    <div
+                        v-for="chapter in playBook.chapters"
+                        :key="chapter.order"
+                        :class="{'text-first': playChapter.order === chapter.order}"
+                        @click="palyerChangeChapter(chapter.order)"
+                    >
                         <div class="mb-1">{{ chapter.title }}</div>
                         <small class="d-block pl-3 mb-4">
                             {{ chapter.annotation }}
@@ -187,7 +192,7 @@
         },
         data() {
             return {
-                isAuthenticated: false,
+                isAuthenticated: true,
 
                 user: {},           // for data for user
                 books: [],          // for data for all user books
@@ -285,9 +290,14 @@
             palyerAddSpeed() {
                 this.player.speed >= this.player.speedName.length - 1 ? this.player.speed = 0 : this.player.speed++
             },
-            palyerSelectChapter(direction) {
+            palyerSwitchChapter(direction) {
                 this.playerPause()
                 this.playBook.listening.chapter += direction
+                this.getPlayChapterData()
+            },
+            palyerChangeChapter(order) {
+                this.playerPause()
+                this.playBook.listening.chapter = order
                 this.getPlayChapterData()
             },
             playerRewind(direction) {
