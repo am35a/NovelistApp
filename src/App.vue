@@ -142,7 +142,7 @@
                     </svg>
                 </div>
                 <div class="px-2">
-                    <div class="text-center mb-2">{{ playBook.title }}</div>
+                    <div class="text-center mb-3">{{ playBook.title }}</div>
                     <div
                         v-for="chapter in playBook.chapters"
                         :key="chapter.order"
@@ -153,7 +153,7 @@
                         <small class="d-block pl-3 mb-4">
                             {{ chapter.annotation }}
                             <hr class="mb-1 mt-2 opa-20">
-                            <div class="float-right">{{ chapter.length }} words</div>
+                            <div class="float-right">{{ chapter.listen }} out of {{ chapter.length }} words</div>
                         </small>
                     </div>
                 </div>
