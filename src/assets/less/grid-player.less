@@ -103,7 +103,7 @@
             position: relative;
             display: grid;
             align-self: center;
-            border: var(--key-rem) solid @dark-color;
+            // border: var(--key-rem) solid @dark-color;
             &::before {
                 position: absolute;
                 content: "";
@@ -111,7 +111,7 @@
                 top: 0;
                 right: 0;
                 bottom: 0;
-                background: radial-gradient(circle, currentColor var(--key-rem), @dark-color var(--key-rem), @dark-color calc(var(--key-rem) * 6), transparent calc(var(--key-rem) * 6));
+                background: radial-gradient(circle, currentColor 2.5%, @dark-color 2.5%, @dark-color 20%, transparent 20%, transparent 25%, @dark-color 25%, transparent calc(25% + 2px));
                 z-index: 1;
             }
         }
