@@ -276,6 +276,17 @@ each(@selectors, {
 }
 @keyframes spin {
     100% {
-        transform:rotate(360deg);
+        transform: rotate(360deg);
     }
+}
+
+.player-button-off {
+    opacity: .5;
+    filter: blur(var(--key-rem));
+    transition: all .25s linear;
+}
+.player-button-on {
+    opacity: 1;
+    filter: blur(-0.1rem);
+    transition: all .25s linear;
 }
