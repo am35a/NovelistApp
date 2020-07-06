@@ -39,7 +39,7 @@
     }
 }
 
-@media screen and (orientation: landscape) and (max-width: 767px) {
+@media screen and (orientation: landscape) and (max-width: @media-breakpoint-md - .01) {
     .signin {
         grid-template-areas:
         "splash splash inp-em inp-em"
@@ -49,5 +49,19 @@
         "splash splash btn-si btn-si";
         grid-template-columns: 1fr 1fr auto auto;
         align-self: center;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-height: @media-breakpoint-lk - .01) {
+    .signin {
+        grid-template-areas:
+        "inp-em inp-em inp-pw inp-pw"
+        "errors errors errors errors"
+        "btn-fp btn-su btn-si btn-si";
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        align-self: center;
+    }
+    .splash {
+        display: none;
     }
 }

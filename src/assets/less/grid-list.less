@@ -32,8 +32,8 @@
     }
 }
 
-@media screen and (orientation: landscape) and (max-width: 991px),
-screen and (orientation: portrait) and (min-width: 768px) {
+@media screen and (orientation: landscape) and (max-width: @media-breakpoint-lg - .01),
+screen and (orientation: portrait) and (min-width: @media-breakpoint-md) {
     .list {
         grid-template-columns: repeat(2, 1fr);
     }

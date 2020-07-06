@@ -11,7 +11,7 @@
         padding: var(--padding);
     }
 }
-@media screen and (orientation: landscape) and (max-width: 991px) {
+@media screen and (orientation: landscape) and (max-width: @media-breakpoint-lg - .01) {
     .menu {
         grid-template-columns: auto;
         grid-template-rows: var(--menu-height) auto repeat(2, var(--menu-height)) min-content var(--menu-height);

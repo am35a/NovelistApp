@@ -54,12 +54,6 @@ a {
     white-space: nowrap;
 }
 
-.menu {
-    // color: fadeout(@light-color, 20%);
-    // box-shadow: 0 -1px 0 fadeout(@light-color, 80%);
-    // background-color: @second-color;
-}
-
 [type="button"], [type="reset"], [type="submit"], button {
     -webkit-appearance: button;
 }
@@ -89,8 +83,8 @@ button,
         display: block;
         width: 100%
     }
-    &.button-scope {
-        width: calc(var(--key-rem) * 40);
+    &.button-x-fix {
+        width: calc( @media-min-with - calc(var(--key-rem) * 2));
     }
     &.button-light {
         color: fadeout(@second-color, 20%);
@@ -217,11 +211,18 @@ each(@selectors, {
     }
 }
 
-@media screen and (orientation: portrait) and (max-height: 480px) {
-    /* hide anything when virtual keyboard is displayed */
-     .d-none-limit-height {
-         display: none;
-     }
+/* hide anything when virtual keyboard is displayed */
+@media screen and (orientation: portrait) and (max-height: @media-breakpoint-pk) {
+    .d-none-if-keypad,
+    .d-none-if-keypad-portrait {
+        display: none;
+    }
+}
+@media screen and (orientation: landscape) and (max-height: @media-breakpoint-lk) {
+    .d-none-if-keypad,
+    .d-none-if-keypad-landscape {
+        display: none;
+    }
 }
 
 .rate {
