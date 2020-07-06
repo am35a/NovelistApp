@@ -4,7 +4,7 @@
     grid-auto-rows: calc(var(--icon-size)*2);
     grid-gap: calc(var(--grid-gap)*2);
 }
-@media screen and (orientation: landscape) and (max-width: 991px),
+@media screen and (orientation: landscape) and (max-width: @media-breakpoint-lg - .01),
 screen and (orientation: portrait) and (min-width: 768px) {
     .share-grid {
         grid-template-columns: repeat(6, calc(var(--icon-size)*2));

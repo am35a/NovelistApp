@@ -14,6 +14,11 @@ main {
         overflow-y: auto;
         padding: var(--padding);
     }
+    .novelist,
+    .signin,
+    .account{
+        min-width: @media-min-with;
+    }
     .filters{
         padding: unset;
     }
@@ -55,7 +60,7 @@ main {
     }
 }
 
-@media screen and (orientation: portrait) and (min-width: 768px) {
+@media screen and (orientation: portrait) and (min-width: @media-breakpoint-md) {
     main {
         grid-template-columns: 1fr;
         grid-template-rows: auto var(--menu-height);
@@ -88,7 +93,7 @@ main {
     }
 }
 
-@media screen and (orientation: landscape) and (min-width: 992px) {
+@media screen and (orientation: landscape) and (min-width: @media-breakpoint-lg) {
     main {
         grid-template-columns: 1fr;
         grid-template-rows: auto var(--menu-height);

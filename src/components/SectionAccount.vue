@@ -8,7 +8,7 @@
             </div>
         </div>
             <div class="btn-so">
-                <button @click="$parent.signingOut" class="button-block button-light button-scope button-round" type="button">
+                <button @click="$parent.signingOut" class="button-block button-x-fix button-light button-round m-auto" type="button">
                     Sign Out
                 </button>
             </div>
