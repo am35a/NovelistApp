@@ -11,19 +11,8 @@
                 <img class="rounded-lg shadow-sm" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/cover.jpg`" :alt="playBook.title">
             </section>
             <section v-show="!isSectionShare && !isSectionRate && !isSectionDescription && !isSectionContents" class="player">
-                <div class="player-menu">
-                    <svg @click="toggleSectionShare" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
-                    </svg>
-                    <svg @click="toggleSectionRate" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10"/>
-                    </svg>
-                    <svg @click="toggleSectionDescription" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 15h16v-2H4v2zM4 5v2h16V5H4z"/>
-                    </svg>
-                    <svg @click="toggleSectionContents" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/>
-                    </svg>
+                <div class="player-header">
+                    <span class="text-uppercase">{{ playBook.title }}</span>
                     <svg v-if="isPlayerStarted" @click="playerHide" class="hide player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M6 19h12v2H6z"/>
                     </svg>
@@ -51,8 +40,35 @@
                 </div>
                 <div class="player-cover">
                     <div class="vinyl overflow-hidden rounded-circle shadow">
-                        <img class="m-auto w-100 spin" :class="{ running: playStartDisable}" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/preview.jpg`" alt="">
+                        <img class="m-auto w-100 spin" :class="{ running: playStartDisable}" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/preview.jpg`" :alt="playBook.title">
                     </div>
+
+                    <svg v-if="playRewindBackEnable" @click="playerRewind(-1)" class="rewind-back player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/>
+                    </svg>
+                    <svg v-else class="rewind-back player-button-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/>
+                    </svg>
+                    
+                    <template v-if="playerPlayPauseEnable">
+                        <svg v-if="playStartDisable" @click="playerPause" class="pause text-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                        <svg v-else @click="playerStart" class="play player-button-on text-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </template>
+                    <svg v-else class="play player-button-off text-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+
+                    <svg v-if="playRewindFrontEnable" @click="playerRewind(1)" class="rewind-front player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
+                    </svg>
+                    <svg v-else class="rewind-front player-button-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
+                    </svg>
+
                 </div>
                 <div class="player-part">
                     <svg v-if="playBookPartPrevEnable" @click="palyerSwitchChapter(-1)" class="part-prev player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -73,36 +89,32 @@
                         <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
                     </svg>
                 </div>
-                <div class="player-controls">
-                    <svg v-if="playRewindBackEnable" @click="playerRewind(-1)" class="rewind-back my-auto player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/>
+                <div class="player-menu">
+                    <div></div>
+                    <svg @click="toggleSectionShare" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
                     </svg>
-                    <svg v-else class="rewind-back my-auto player-button-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/>
+                    <div></div>
+                    <svg @click="toggleSectionRate" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10"/>
                     </svg>
-
-                    <template v-if="playerPlayPauseEnable">
-                        <svg v-if="playStartDisable" @click="playerPause" class="pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                        </svg>
-                        <svg v-else @click="playerStart" class="play player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>
-                    </template>
-                    <svg v-else class="play player-button-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z"/>
+                    <div></div>
+                    <svg class="opa-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22 18V2H6v16h16zm-11-6l2.03 2.71L16 11l4 5H8l3-4zM2 6v16h16v-2H4V6H2z"/>
                     </svg>
-
-                    <svg v-if="playRewindFrontEnable" @click="playerRewind(1)" class="rewind-front my-auto player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
+                    <div></div>
+                    <svg @click="toggleSectionDescription" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 15h16v-2H4v2zM4 5v2h16V5H4z"/>
                     </svg>
-                    <svg v-else class="rewind-front my-auto player-button-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
+                    <div></div>
+                    <svg @click="toggleSectionContents" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/>
                     </svg>
+                    <div></div>
                 </div>
             </section>
             <section v-if="isSectionShare" class="player share">
-                <div class="player-menu">
+                <div class="player-header">
                     <span class="text-uppercase">Share</span>
                     <svg class="close" @click="toggleSectionShare" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -113,7 +125,7 @@
                 </div>
             </section>
             <section v-if="isSectionRate" class="player rate">
-                <div class="player-menu">
+                <div class="player-header">
                     <span class="text-uppercase">Rate</span>
                     <svg class="close" @click="toggleSectionRate" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -127,7 +139,7 @@
                 </div>
             </section>
             <section v-if="isSectionDescription" class="player description">
-                <div class="player-menu">
+                <div class="player-header">
                     <span class="text-uppercase">Description</span>
                     <svg class="close" @click="toggleSectionDescription" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
@@ -148,7 +160,7 @@
                 </div>
             </section>
             <section v-if="isSectionContents" class="player contents">
-                <div class="player-menu">
+                <div class="player-header">
                     <span class="text-uppercase">Contents</span>
                     <svg class="close" @click="toggleSectionContents" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
