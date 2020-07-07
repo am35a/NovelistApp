@@ -4,7 +4,7 @@
 
 ![preview signin](http://mobitoon.ru/novelist/app/app/prev-enter-4.png)
 ![preview books list](http://mobitoon.ru/novelist/app/app/prev-books-4.png)
-![preview player](http://mobitoon.ru/novelist/app/app/prev-player-4.png)
+![preview player](http://mobitoon.ru/novelist/app/app/prev-player-5.png)
 
 ## Project setup
 ```
