@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section v-touch:swipe.left="$parent.toggleSectionFilters">
         <div
             class="item"
             v-show="isItemHideAsListened(completed(book.chapters))"
