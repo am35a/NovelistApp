@@ -1,5 +1,8 @@
 <template>
-    <section @click="closeAll($event)">
+    <section
+        @click="closeAll($event)"
+        v-touch:swipe.right="$parent.toggleSectionFilters"
+    >
         <div class="slide-right-to-left slide-left-to-right ml-auto">
             <div class="mt-auto"></div>
             <div @click="$parent.player.listened = !$parent.player.listened">
