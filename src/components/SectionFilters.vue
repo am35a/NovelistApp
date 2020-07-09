@@ -1,6 +1,6 @@
 <template>
     <section @click="closeAll($event)">
-        <div class="ml-auto">
+        <div class="slide-right-to-left slide-left-to-right ml-auto">
             <div class="mt-auto"></div>
             <div @click="$parent.player.listened = !$parent.player.listened">
                 <svg class="mw-100 mh-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">

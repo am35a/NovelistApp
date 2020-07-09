@@ -251,12 +251,13 @@ each(@selectors, {
 
 .filters {
     display: grid;
+    background-color: fadeout(@dark-color, 80%);
     z-index: 1;
     > div {
         display: flex;
         flex-direction: column;
         padding: var(--padding);
-        background-color: fadeout(@second-color, 20%);
+        background-color: @second-color;
         div {
             display: grid;
             grid-template-columns: var(--icon-size) auto;
@@ -290,4 +291,44 @@ each(@selectors, {
     opacity: 1;
     filter: blur(-0.1rem);
     transition: all .25s linear;
+}
+
+.fade {
+    &-enter {
+        opacity: 0;
+        .slide-right-to-left {
+            transform: translateX(100%);
+        }
+    }
+    &-enter-active {
+        transition: opacity 250ms linear 0ms;
+        .slide-right-to-left {
+            transition: transform 250ms linear;
+        }
+    }
+    &-enter-to {
+        opacity: 1;
+        .slide-right-to-left {
+            transform: translateX(0%);
+        }
+    }
+
+    &-leave {
+        opacity: 1;
+        .slide-left-to-right {
+            transform: translateX(0%);
+        }
+    }
+    &-leave-active {
+        transition: opacity 250ms linear;
+        .slide-left-to-right {
+            transition: transform 250ms linear;
+        }
+    }
+    &-leave-to {
+        opacity: 0;
+        .slide-left-to-right {
+            transform: translateX(100%);
+        }
+    }
 }

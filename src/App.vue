@@ -4,7 +4,9 @@
         <SectionNovelist v-if="showSectionNovelist" class="novelist"></SectionNovelist>
         <SectionAccount v-if="showSectionAccount" class="account"></SectionAccount>
         <SectionList v-if="isSectionList" class="list"></SectionList>
-        <SectionFilters v-if="isSectionFilters" class="filters"></SectionFilters>
+        <transition name="fade">
+            <SectionFilters v-show="isSectionFilters" class="filters"></SectionFilters>
+        </transition>
 
         <template v-if="isSectionPlayer">
             <section class="player bkg">
