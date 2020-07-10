@@ -129,66 +129,66 @@
                         <ShareBook></ShareBook>
                     </div>
                 </section>
-            </transition>
-            <section v-if="isSectionRate" class="player rate">
-                <div class="player-header">
-                    <span class="text-uppercase">Rate</span>
-                    <svg class="close" @click="toggleSectionRate" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
-                </div>
-                <div class="text-center align-self-center">
-                    <div>Curent rate</div>
-                    <div class="display-1 mb-4">{{ playBook.rate }}</div>
-                    <div class="mb-3">Your vote</div>
-                    <FiveStarRate></FiveStarRate>
-                </div>
-            </section>
-            <section v-if="isSectionDescription" class="player description">
-                <div class="player-header">
-                    <span class="text-uppercase">Description</span>
-                    <svg class="close" @click="toggleSectionDescription" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
-                </div>
-                <div class="px-2">
-                    <p class="text-center">
-                        {{ playBook.title }}
-                    </p>
-                    <p>
-                        <small>
-                            Author: {{ playBook.author }}
-                            <br>
-                            Genres: {{ playBook.genres }}
-                        </small>
-                    </p>
-                    {{ playBook.annotation }}
-                </div>
-            </section>
-            <section v-if="isSectionContents" class="player contents">
-                <div class="player-header">
-                    <span class="text-uppercase">Contents</span>
-                    <svg class="close" @click="toggleSectionContents" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
-                </div>
-                <div class="px-2">
-                    <div class="text-center mb-3">{{ playBook.title }}</div>
-                    <div
-                        v-for="chapter in playBook.chapters"
-                        :key="chapter.order"
-                        :class="{'text-first': playChapter.order === chapter.order}"
-                        @click="palyerChangeChapter(chapter.order)"
-                    >
-                        <div class="mb-1">{{ chapter.title }}</div>
-                        <small class="d-block pl-3 mb-4">
-                            {{ chapter.annotation }}
-                            <hr class="mb-1 mt-2 opa-20">
-                            <div class="float-right">{{ chapter.listen }} out of {{ chapter.length }} words</div>
-                        </small>
+                <section v-if="isSectionRate" v-touch:swipe.bottom="toggleSectionRate" class="player rate">
+                    <div class="player-header">
+                        <span class="text-uppercase">Rate</span>
+                        <svg class="close" @click="toggleSectionRate" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
                     </div>
-                </div>
-            </section>
+                    <div class="text-center align-self-center slide-bottom-to-top slide-top-to-bottom">
+                        <div>Curent rate</div>
+                        <div class="display-1 mb-4">{{ playBook.rate }}</div>
+                        <div class="mb-3">Your vote</div>
+                        <FiveStarRate></FiveStarRate>
+                    </div>
+                </section>
+                <section v-if="isSectionDescription" v-touch:swipe.bottom="toggleSectionDescription" class="player description">
+                    <div class="player-header">
+                        <span class="text-uppercase">Description</span>
+                        <svg class="close" @click="toggleSectionDescription" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </div>
+                    <div class="px-2 slide-bottom-to-top slide-top-to-bottom">
+                        <p class="text-center">
+                            {{ playBook.title }}
+                        </p>
+                        <p>
+                            <small>
+                                Author: {{ playBook.author }}
+                                <br>
+                                Genres: {{ playBook.genres }}
+                            </small>
+                        </p>
+                        {{ playBook.annotation }}
+                    </div>
+                </section>
+                <section v-if="isSectionContents" v-touch:swipe.bottom="toggleSectionContents" class="player contents">
+                    <div class="player-header">
+                        <span class="text-uppercase">Contents</span>
+                        <svg class="close" @click="toggleSectionContents" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </div>
+                    <div class="px-2 slide-bottom-to-top slide-top-to-bottom">
+                        <div class="text-center mb-3">{{ playBook.title }}</div>
+                        <div
+                            v-for="chapter in playBook.chapters"
+                            :key="chapter.order"
+                            :class="{'text-first': playChapter.order === chapter.order}"
+                            @click="palyerChangeChapter(chapter.order)"
+                        >
+                            <div class="mb-1">{{ chapter.title }}</div>
+                            <small class="d-block pl-3 mb-4">
+                                {{ chapter.annotation }}
+                                <hr class="mb-1 mt-2 opa-20">
+                                <div class="float-right">{{ chapter.listen }} out of {{ chapter.length }} words</div>
+                            </small>
+                        </div>
+                    </div>
+                </section>
+            </transition>
         </template>
         
         <SectionMenu class="menu"></SectionMenu>
