@@ -24,13 +24,7 @@
         name: 'SectionList',
         methods: {
             completed(chapters) {
-                let length = 0
-                let listen = 0
-                for (let index = 0; index < chapters.length; index++) {
-                     length += parseInt(chapters[index].length)
-                     listen += parseInt(chapters[index].listen)
-                }
-                return parseInt(listen / length * 100)
+                return parseInt(this.totalListen(chapters) / this.totalLength(chapters) * 100)
             },
             totalLength(chapters) {
                 let length = 0
