@@ -299,10 +299,16 @@ each(@selectors, {
         .slide-right-to-left {
             transform: translateX(100%);
         }
+        .slide-bottom-to-top {
+            transform: translateY(100%);
+        }
     }
     &-enter-active {
         transition: opacity 250ms linear 0ms;
         .slide-right-to-left {
+            transition: transform 250ms linear;
+        }
+        .slide-bottom-to-top {
             transition: transform 250ms linear;
         }
     }
@@ -311,6 +317,9 @@ each(@selectors, {
         .slide-right-to-left {
             transform: translateX(0%);
         }
+        .slide-bottom-to-top {
+            transform: translateY(0%);
+        }
     }
 
     &-leave {
@@ -318,10 +327,16 @@ each(@selectors, {
         .slide-left-to-right {
             transform: translateX(0%);
         }
+        .slide-top-to-bottom {
+            transform: translateY(0%);
+        }
     }
     &-leave-active {
         transition: opacity 250ms linear;
         .slide-left-to-right {
+            transition: transform 250ms linear;
+        }
+        .slide-top-to-bottom {
             transition: transform 250ms linear;
         }
     }
@@ -329,6 +344,9 @@ each(@selectors, {
         opacity: 0;
         .slide-left-to-right {
             transform: translateX(100%);
+        }
+        .slide-top-to-bottom {
+            transform: translateY(100%);
         }
     }
 }
