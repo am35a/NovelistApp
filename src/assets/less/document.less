@@ -252,6 +252,7 @@ each(@selectors, {
 .filters {
     display: grid;
     background-color: fadeout(@dark-color, 80%);
+    will-change: opacity, transform;
     z-index: 1;
     > div {
         display: flex;
@@ -269,28 +270,33 @@ each(@selectors, {
 }
 
 .spin {
-    animation: spin 24s linear infinite;
+    animation-name: spin;
+    animation-duration: 24s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     animation-play-state: paused;
+    animation-fill-mode: both;
+
     will-change: transform;
     &.running {
         animation-play-state: running;
     }
 }
 @keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(1turn); }
 }
 
-.player-button-off {
-    opacity: .5;
-    filter: blur(var(--key-rem));
-    transition: all .25s linear;
-}
-.player-button-on {
-    opacity: 1;
-    filter: blur(-0.1rem);
-    transition: all .25s linear;
+.player-button {
+    &-off {
+        opacity: .5;
+        filter: blur(var(--key-rem));
+        transition: all .25s linear;
+    }
+    &-on {
+        opacity: 1;
+        filter: blur(-0.1rem);
+        transition: all .25s linear;
+    }
 }
 
 .fade {
