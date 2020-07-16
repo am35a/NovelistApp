@@ -5,7 +5,7 @@
             v-show="isItemHideAsListened(completed(book.chapters))"
             v-for="book in $parent.sortBooksList"
             :key="book.id"
-            @click="$parent.playerOpen($parent.books.findIndex(object => object.id === book.id))"
+            @click="playerEnable(book.id)"
         >
             <img class="thumb rounded-circle shadow-sm spin" :class="{ running: runningSpin(book.id)}" :src="`http://mobitoon.ru/novelist/images/books/${book.id}/preview.jpg`" :alt="`${book.title}`">
             <div class="title text-truncate">{{ book.title }}</div>
@@ -23,6 +23,17 @@
     export default {
         name: 'SectionList',
         methods: {
+            playerEnable(id){
+                let playBookIndex = this.$parent.books.findIndex(object => object.id === id)
+                if( this.$parent.selectedBookId != this.$parent.books[playBookIndex].id ) {
+                    this.$parent.selectedBookId = this.$parent.books[playBookIndex].id
+                    if( this.$parent.isPlayerStarted )
+                        this.$parent.playerPause()
+                    this.$parent.getPlayBookData(playBookIndex)
+                    this.$parent.getPlayChapterData()
+                }
+                this.$parent.playerOpen()
+            },
             completed(chapters) {
                 return parseInt(this.totalListen(chapters) / this.totalLength(chapters) * 100)
             },
