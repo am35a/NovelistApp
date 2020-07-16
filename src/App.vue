@@ -305,16 +305,8 @@
             },
 
             // player
-            playerOpen(playBookIndex) {
+            playerOpen() {
                 this.showSectionPlayer = true
-
-                if( this.selectedBookId != this.books[playBookIndex].id ) {
-                    this.selectedBookId = this.books[playBookIndex].id
-                    if( this.isPlayerStarted )
-                        this.playerPause()
-                    this.getPlayBookData(playBookIndex)
-                    this.getPlayChapterData()
-                }
             },
             playerHide() {
                 this.showSectionPlayer = false
