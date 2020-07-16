@@ -225,11 +225,15 @@
             return {
                 isAuthenticated: false,
 
-                user: {},           // for data for user
-                books: [],          // for data for all user books
-                player: {},         // for saved player date
-                playBook: {},       // for play book date
-                playChapter: {},    // for play chapter date
+                user: {},               // for data for user
+                books: [],              // for data for all user books
+                player: {},             // for saved player date
+                playBook: {},           // for play book date
+                playChapter: {},        // for play chapter date
+
+                selectedBookId: null,   // currently playing book
+
+                audio: null,
 
                 // sectionList: false,
                 showSectionNovelist: false,
@@ -302,10 +306,15 @@
 
             // player
             playerOpen(playBookIndex) {
-                this.getPlayBookData(playBookIndex)
-                this.getPlayChapterData()
-
                 this.showSectionPlayer = true
+
+                if( this.selectedBookId != this.books[playBookIndex].id ) {
+                    this.selectedBookId = this.books[playBookIndex].id
+                    if( this.isPlayerStarted )
+                        this.playerPause()
+                    this.getPlayBookData(playBookIndex)
+                    this.getPlayChapterData()
+                }
             },
             playerHide() {
                 this.showSectionPlayer = false
@@ -320,6 +329,17 @@
             },
             palyerAddSpeed() {
                 this.player.speed >= this.player.speedName.length - 1 ? this.player.speed = 0 : this.player.speed++
+                // switch (this.player.speed) {
+                //     case 1:
+                //         this.audio.playbackRate = 1.25
+                //         break;
+                //     case 2:
+                //         this.audio.playbackRate = 1.5
+                //         break;
+                //     default:
+                //         this.audio.playbackRate = 1.0
+                //         break;
+                // }
             },
             palyerSwitchChapter(direction) {
                 this.playerPause()
@@ -333,28 +353,31 @@
             },
             playerRewind(direction) {
                 let listen = parseInt(this.playChapter.listen) + this.player.rewind * direction
-                if(listen < 0)
+                if( listen < 0 )
                     return this.playChapter.listen = 0
-                if(listen > this.playChapter.length)
+                if( listen > this.playChapter.length )
                     return this.playChapter.listen = this.playChapter.length
                 return this.playChapter.listen = listen
             },
             playerStart() {
                 this.isPlayerStarted = true
 
+                // this.audio = new Audio("http://mobitoon.ru/novelist/app/books/speech_test_brian.mp3");
+                // this.audio.play();
+
                 // start - this is tmp code to simulate text-to-speech
                 let timerId = setInterval(() => {
-                    if(this.playChapter.listen >= this.playChapter.length || !this.isPlayerStarted){
+                    if( this.playChapter.listen >= this.playChapter.length || !this.isPlayerStarted ){
                             clearInterval(timerId)
                             this.playerPause()
-                        }
-                    else
+                    } else
                         this.playChapter.listen++
                 }, 500);
                 // end
             },
             playerPause() {
                 this.isPlayerStarted = false
+                // this.audio.pause();
             },
             // player gets
             getPlayBookData(playBookIndex) {
