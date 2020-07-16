@@ -17,7 +17,24 @@
                     "title": "Intro",
                     "annotation": "",
                     "length": 60,
-                    "listen": 60
+                    "listen": 60,
+                    "paragraph": [
+                        {
+                            "id": 1,
+                            "type": "image",
+                            "extension": "jpg"
+                        },
+                        {
+                            "id": 3,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 2,
+                            "type": "figure",
+                            "extension": "jpg"
+                        }
+                    ]
                 },
                 {
                     "id": 24,
@@ -25,7 +42,29 @@
                     "title": "Incidunt voluptate saepe quis.",
                     "annotation": "Ad modi ipsa neque ullam tempora, laboriosam, recusandae doloribus et sapiente, atque alias. Quod voluptate corrupti atque eum quia iure facere aspernatur, consequatur sapiente optio, minima officia autem eos deserunt.",
                     "length": 1002,
-                    "listen": 30
+                    "listen": 30,
+                    "paragraph": [
+                        {
+                            "id": 3,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 2,
+                            "type": "figure",
+                            "extension": "jpg"
+                        },
+                        {
+                            "id": 4,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 5,
+                            "type": "text",
+                            "extension": "mp3"
+                        }
+                    ]
                 },
                 {
                     "id": 22,
@@ -33,7 +72,19 @@
                     "title": "Eligendi culpa minus facere.",
                     "annotation": "Debitis consequatur porro officiis recusandae, adipisci distinctio rem soluta mollitia commodi, sed reiciendis molestias voluptas voluptatibus voluptatem, illo ratione in vero voluptates repellendus.",
                     "length": 791,
-                    "listen": 788
+                    "listen": 788,
+                    "paragraph": [
+                        {
+                            "id": 4,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 5,
+                            "type": "text",
+                            "extension": "mp3"
+                        }
+                    ]
                 },
                 {
                     "id": 21,
@@ -41,11 +92,24 @@
                     "title": "Epilogue",
                     "annotation": "",
                     "length": 137,
-                    "listen": 0
+                    "listen": 0,
+                    "paragraph": [
+                        {
+                            "id": 4,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 6,
+                            "type": "figure",
+                            "extension": "jpg"
+                        }
+                    ]
                 }
             ],
             "listening": {
-                "chapter": 1
+                "chapter": 1,
+                "paragraph": 0
             }
         },
         {
@@ -65,7 +129,24 @@
                     "title": "I - Nisi ad at eligendi",
                     "annotation": "Delectus eos eveniet ex fugit neque sint quos iusto dolores consequatur...",
                     "length": 1202,
-                    "listen": 0
+                    "listen": 0,
+                    "paragraph": [
+                        {
+                            "id": 3,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 4,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 5,
+                            "type": "text",
+                            "extension": "mp3"
+                        }
+                    ]
                 },
                 {
                     "id": 11,
@@ -73,7 +154,24 @@
                     "title": "II - Commodi",
                     "annotation": "Autem, asperiores consectetur!",
                     "length": 1002,
-                    "listen": 0
+                    "listen": 0,
+                    "paragraph": [
+                        {
+                            "id": 3,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 4,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 5,
+                            "type": "text",
+                            "extension": "mp3"
+                        }
+                    ]
                 },
                 {
                     "id": 38,
@@ -81,7 +179,24 @@
                     "title": "III - Eligendi",
                     "annotation": "Ab, atque, esse facere expedita accusamus nesciunt asperiores odit similique porro omnis.",
                     "length": 991,
-                    "listen": 0
+                    "listen": 0,
+                    "paragraph": [
+                        {
+                            "id": 3,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 4,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 5,
+                            "type": "text",
+                            "extension": "mp3"
+                        }
+                    ]
                 },
                 {
                     "id": 12,
@@ -89,11 +204,29 @@
                     "title": "IV - Optio",
                     "annotation": "Minus consequatur soluta ducimus molestiae rem optio voluptatibus fugiat tempora ex, eum enim omnis saepe.",
                     "length": 2137,
-                    "listen": 0
+                    "listen": 0,
+                    "paragraph": [
+                        {
+                            "id": 3,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 4,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 5,
+                            "type": "text",
+                            "extension": "mp3"
+                        }
+                    ]
                 }
             ],
             "listening": {
-                "chapter": 0
+                "chapter": 0,
+                "paragraph": 0
             }
         },
         {
@@ -113,11 +246,34 @@
                     "title": "",
                     "annotation": "Facere error commodi saepe sequi dolor odit culpa doloribus beatae, in eum quibusdam optio maiores nam expedita et soluta.",
                     "length": 2198,
-                    "listen": 2198
+                    "listen": 2198,
+                    "paragraph": [
+                        {
+                            "id": 3,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 4,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 5,
+                            "type": "text",
+                            "extension": "mp3"
+                        },
+                        {
+                            "id": 7,
+                            "type": "img",
+                            "extension": "jpg"
+                        }
+                    ]
                 }
             ],
             "listening": {
-                "chapter": 0
+                "chapter": 0,
+                "paragraph": 0
             }
         }
     ],
