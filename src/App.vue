@@ -29,7 +29,7 @@
                     <div class="player-progress">
                         <div class="player-range opa-20"></div>
                         <div class="player-range" :style="{width: `${Math.floor(playChapter.listen / playChapter.length * 1000)/10}%`}"></div>
-                        <small class="mt-auto mr-auto">{{ playChapter.listen }}</small>
+                        <small class="mt-auto mr-auto">{{ playChapter.listen }} &bull; {{ playBook.listening.paragraph }} - {{ audio.currentTime | timeFormatHHMMSS }}</small>
                         <small class="mt-auto ml-auto">{{ playChapter.length }}</small>
                         <input class="w-100 opa-0" type="range" v-model="playChapter.listen" min="0" :max="playChapter.length">
                     </div>
@@ -223,7 +223,7 @@
         },
         data() {
             return {
-                isAuthenticated: false,
+                isAuthenticated: true,
 
                 user: {},               // for data for user
                 books: [],              // for data for all user books
@@ -233,7 +233,11 @@
 
                 selectedBookId: null,   // currently playing book
 
-                audio: null,
+                audio: {
+                    src: "",
+                    object: null,
+                    currentTime: null
+                },                
 
                 // sectionList: false,
                 showSectionNovelist: false,
@@ -305,9 +309,6 @@
             },
 
             // player
-            playerOpen() {
-                this.showSectionPlayer = true
-            },
             playerHide() {
                 this.showSectionPlayer = false
             },
@@ -317,31 +318,24 @@
             playerClose() {
                 this.playerPause()
                 this.playBook = {}
+                this.selectedBookId = null
                 this.showSectionPlayer = false
             },
             palyerAddSpeed() {
                 this.player.speed >= this.player.speedName.length - 1 ? this.player.speed = 0 : this.player.speed++
-                // switch (this.player.speed) {
-                //     case 1:
-                //         this.audio.playbackRate = 1.25
-                //         break;
-                //     case 2:
-                //         this.audio.playbackRate = 1.5
-                //         break;
-                //     default:
-                //         this.audio.playbackRate = 1.0
-                //         break;
-                // }
+                if( this.audio.object )
+                    this.audio.object.playbackRate = this.audioSpeed
             },
             palyerSwitchChapter(direction) {
                 this.playerPause()
                 this.playBook.listening.chapter += direction
-                this.getPlayChapterData()
+                this.setPlayChapterData()
+                this.playBook.listening.paragraph = 0
             },
             palyerChangeChapter(order) {
                 this.playerPause()
                 this.playBook.listening.chapter = order
-                this.getPlayChapterData()
+                this.setPlayChapterData()
             },
             playerRewind(direction) {
                 let listen = parseInt(this.playChapter.listen) + this.player.rewind * direction
@@ -354,30 +348,72 @@
             playerStart() {
                 this.isPlayerStarted = true
 
-                // this.audio = new Audio("http://mobitoon.ru/novelist/app/books/speech_test_brian.mp3");
-                // this.audio.play();
+                this.audioPlay()
 
                 // start - this is tmp code to simulate text-to-speech
-                let timerId = setInterval(() => {
-                    if( this.playChapter.listen >= this.playChapter.length || !this.isPlayerStarted ){
-                            clearInterval(timerId)
-                            this.playerPause()
-                    } else
-                        this.playChapter.listen++
-                }, 500);
+                // let timerId = setInterval(() => {
+                //     if( this.playChapter.listen >= this.playChapter.length || !this.isPlayerStarted ){
+                //     // if( this.audio.object.ended ){
+                //             clearInterval(timerId)
+                //             this.playerPause()
+                //     } else
+                //         this.playChapter.listen++
+                // }, 500);
                 // end
             },
             playerPause() {
                 this.isPlayerStarted = false
-                // this.audio.pause();
+                // if( this.audio.object )
+                    this.audio.object.pause()
             },
-            // player gets
-            getPlayBookData(playBookIndex) {
+
+            // player sets
+            setPlayBookData(playBookIndex) {
                 this.playBook = this.books[playBookIndex]
             },
-            getPlayChapterData() {
+            setPlayChapterData() {
                 this.playChapter = this.playBook.chapters[this.playBook.listening.chapter]
+            },
+
+            // player gets
+            getCurrentParagraphTime() {
+                return this.audio.object ? parseInt(this.audio.object.currentTime) : 0
+            },
+
+            // audio
+            audioPlay() {
+                if( this.setAudioObject() )
+                    this.audio.object.play()
+            },
+
+            // audio sets
+            setAudioObject() {
+                if( this.audio.src != this.audioSrc ) {
+                    this.audio.src = this.audioSrc
+                    this.audio.object = new Audio(this.audio.src)
+                    this.audio.object.addEventListener('timeupdate', this.audioUpdater)
+                    this.audio.object.addEventListener('ended', this.audioEnded)
+                    this.audio.object.playbackRate = this.audioSpeed
+                }
+                return this.audio.object ? true : false
+            },
+
+            // audio events
+            audioEnded() {
+                if (this.playBook.listening.paragraph < this.playChapter.paragraphs.length - 1) {
+                    this.playBook.listening.paragraph++
+                    this.setAudioObject()
+                    this.audio.object.play()
+                } else {
+                    this.playerPause()
+                }
+            },
+            audioUpdater() {
+                this.audio.currentTime = this.getCurrentParagraphTime()
             }
+        },
+        filters: {
+            timeFormatHHMMSS: (s) => new Date(s * 1000).toISOString().substr( s < 3600 ? 14 : 11, s < 3600 ? 5 : 8)
         },
         computed: {
             // sort books list by types 
@@ -452,8 +488,14 @@
             },
             playerPlayPauseEnable() {
                 return this.playRewindFrontEnable
-            }
-
+            },
+            audioSrc() {
+                let paragraph = this.playChapter.paragraphs[this.playBook.listening.paragraph]
+                return `http://mobitoon.ru/novelist/app/books/${this.selectedBookId}/${this.selectedBookId}_${this.playChapter.id}_${paragraph.id}.${paragraph.extension}`
+            },
+            audioSpeed() {
+                return 1 + this.player.speed * .25
+            },
         },
         mounted() {
             if (this.isAuthenticated)

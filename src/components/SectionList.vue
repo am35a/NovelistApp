@@ -29,10 +29,10 @@
                     this.$parent.selectedBookId = this.$parent.books[playBookIndex].id
                     if( this.$parent.isPlayerStarted )
                         this.$parent.playerPause()
-                    this.$parent.getPlayBookData(playBookIndex)
-                    this.$parent.getPlayChapterData()
+                    this.$parent.setPlayBookData(playBookIndex)
+                    this.$parent.setPlayChapterData()
                 }
-                this.$parent.playerOpen()
+                this.$parent.playerShow()
             },
             completed(chapters) {
                 return parseInt(this.totalListen(chapters) / this.totalLength(chapters) * 100)
