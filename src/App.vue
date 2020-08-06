@@ -27,11 +27,14 @@
                         </svg>
                     </div>
                     <div class="player-progress">
+                        <!-- <input class="w-100 opa-0" type="range" v-model="playChapter.listen" min="0" :max="playChapter.length"> -->
                         <div class="player-range opa-20"></div>
-                        <div class="player-range" :style="{width: `${Math.floor(playChapter.listen / playChapter.length * 1000)/10}%`}"></div>
-                        <small class="mt-auto mr-auto">{{ playChapter.listen }} &bull; {{ playBook.listening.paragraph }} - {{ audio.currentTime | timeFormatHHMMSS }}</small>
-                        <small class="mt-auto ml-auto">{{ playChapter.length }}</small>
-                        <input class="w-100 opa-0" type="range" v-model="playChapter.listen" min="0" :max="playChapter.length">
+                        <div class="player-range player-chapter-range" :style="{width: `${(playBookChapterCurrentDuration() + audio.currentTime) / playBookChapterTotalDuration() * 100}%`}"></div>
+                        <div class="player-range" :style="{width: `${parseInt((playBookCurrentDuration + audio.currentTime) / playBookTotalDuration * 100)}%`}"></div>
+                        <small class="mt-auto mr-auto">{{ playBookChapterCurrentDuration() + audio.currentTime | timeFormatHHMMSS }}</small>
+                        <small class="mt-auto ml-auto">{{ playBookChapterTotalDuration() | timeFormatHHMMSS }}</small>
+                        <!-- <small class="mt-auto mr-auto">{{ playBookCurrentDuration + audio.currentTime | timeFormatHHMMSS }} &bull; {{ playBookChapterCurrentDuration() + audio.currentTime | timeFormatHHMMSS }}</small>
+                        <small class="mt-auto ml-auto">{{ playBookChapterTotalDuration() | timeFormatHHMMSS }} &bull; {{ playBookTotalDuration | timeFormatHHMMSS }}</small> -->
                     </div>
                     <div class="player-speed" @click="palyerAddSpeed">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -43,7 +46,7 @@
                     </div>
                     <div class="player-cover">
                         <div class="vinyl overflow-hidden rounded-circle shadow">
-                            <img class="m-auto w-100 spin" :class="{ running: playStartDisable}" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/preview.jpg`" :alt="playBook.title">
+                            <img class="m-auto w-100 spin" :class="[{ running: playStartDisable}, player.speedName[player.speed]]" :src="`http://mobitoon.ru/novelist/images/books/${playBook.id}/preview.jpg`" :alt="playBook.title">
                         </div>
 
                         <svg v-if="playRewindBackEnable" @click="playerRewind(-1)" class="rewind-back player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -61,9 +64,12 @@
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
                         </template>
-                        <svg v-else class="play player-button-off text-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8 5v14l11-7z"/>
+                        <svg v-else @click="resetPlayChapterData" class="play player-button-on text-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,5V1.5L7.6,5.9l4.4,4.4V6.8c2.9,0,5.3,2.4,5.3,5.3s-2.4,5.3-5.3,5.3S6.8,14.9,6.8,12H5c0,3.8,3.1,7,7,7s7-3.2,7-7S15.8,5,12,5z"/>
                         </svg>
+                        <!--svg v-else class="play player-button-off text-first" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg-->
 
                         <svg v-if="playRewindFrontEnable" @click="playerRewind(1)" class="rewind-front player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
@@ -71,7 +77,6 @@
                         <svg v-else class="rewind-front player-button-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/>
                         </svg>
-
                     </div>
                     <div class="player-part">
                         <svg v-if="playBookPartPrevEnable" @click="palyerSwitchChapter(-1)" class="part-prev player-button-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -183,7 +188,8 @@
                             <small class="d-block pl-3 mb-4">
                                 {{ chapter.annotation }}
                                 <hr class="mb-1 mt-2 opa-20">
-                                <div class="float-right">{{ chapter.listen }} out of {{ chapter.length }} words</div>
+                                <div class="float-right">{{ playBookChapterCurrentDuration(chapter.order) | timeFormatHHMMSS }} out of {{ playBookChapterTotalDuration(chapter.order) | timeFormatHHMMSS }}</div>
+                                <!-- <div class="float-right">{{ playBookChapterCurrentDuration(chapter.order) + playBook.listeningChapter === chapter.order ? audio.currentTime : 0 }} out of {{ playBookChapterTotalDuration(chapter.order) }}</div> -->
                             </small>
                         </div>
                     </div>
@@ -223,7 +229,7 @@
         },
         data() {
             return {
-                isAuthenticated: true,
+                isAuthenticated: false,
 
                 user: {},               // for data for user
                 books: [],              // for data for all user books
@@ -236,8 +242,9 @@
                 audio: {
                     src: "",
                     object: null,
-                    currentTime: null
-                },                
+                    currentTime: null,
+                    duration: null
+                },
 
                 // sectionList: false,
                 showSectionNovelist: false,
@@ -319,6 +326,7 @@
                 this.playerPause()
                 this.playBook = {}
                 this.selectedBookId = null
+                this.resetAudioObject()
                 this.showSectionPlayer = false
             },
             palyerAddSpeed() {
@@ -328,43 +336,43 @@
             },
             palyerSwitchChapter(direction) {
                 this.playerPause()
-                this.playBook.listening.chapter += direction
+                this.playBook.listeningChapter += direction
                 this.setPlayChapterData()
-                this.playBook.listening.paragraph = 0
+                // this.playBook.listening.paragraph = 0
             },
             palyerChangeChapter(order) {
-                this.playerPause()
-                this.playBook.listening.chapter = order
-                this.setPlayChapterData()
+                if( this.playBook.listeningChapter != order ) {
+                    this.playerPause()
+                    this.playBook.listeningChapter = order
+                    this.setPlayChapterData()
+                }
             },
             playerRewind(direction) {
-                let listen = parseInt(this.playChapter.listen) + this.player.rewind * direction
-                if( listen < 0 )
-                    return this.playChapter.listen = 0
-                if( listen > this.playChapter.length )
-                    return this.playChapter.listen = this.playChapter.length
-                return this.playChapter.listen = listen
+
+                if( direction < 0 && this.playChapter.lastListenedParagraph >= 0 || direction > 0 && this.playChapter.lastListenedParagraph < this.playChapter.paragraphs.length - 1 ) {
+                    this.playChapter.lastListenedParagraph += direction
+                    this.audioPause()
+                    this.setAudioObject()
+                    if(this.isPlayerStarted)
+                        this.audioPlay()
+                }
+
+                // let listen = parseInt(this.playChapter.listen) + this.player.rewind * direction
+                // if( listen < 0 )
+                //     return this.playChapter.listen = 0
+                // if( listen > this.playChapter.length )
+                //     return this.playChapter.listen = this.playChapter.length
+                // return this.playChapter.listen = listen
             },
             playerStart() {
-                this.isPlayerStarted = true
-
-                this.audioPlay()
-
-                // start - this is tmp code to simulate text-to-speech
-                // let timerId = setInterval(() => {
-                //     if( this.playChapter.listen >= this.playChapter.length || !this.isPlayerStarted ){
-                //     // if( this.audio.object.ended ){
-                //             clearInterval(timerId)
-                //             this.playerPause()
-                //     } else
-                //         this.playChapter.listen++
-                // }, 500);
-                // end
+                if( !this.isPlayBookChapterEnded ) {
+                    this.isPlayerStarted = true
+                    this.audioPlay()
+                }
             },
             playerPause() {
                 this.isPlayerStarted = false
-                // if( this.audio.object )
-                    this.audio.object.pause()
+                this.audioPause()
             },
 
             // player sets
@@ -372,12 +380,34 @@
                 this.playBook = this.books[playBookIndex]
             },
             setPlayChapterData() {
-                this.playChapter = this.playBook.chapters[this.playBook.listening.chapter]
+                this.resetAudioObject()
+                this.playChapter = this.playBook.chapters[this.playBook.listeningChapter]
             },
-
+            resetPlayChapterData() {
+                this.resetAudioObject()
+                this.playChapter.lastListenedParagraph = -1
+            },
             // player gets
             getCurrentParagraphTime() {
-                return this.audio.object ? parseInt(this.audio.object.currentTime) : 0
+                return this.audio.object ? this.audio.object.currentTime : 0
+            },
+            playBookChapterCurrentDuration(chapterOrder = this.playBook.listeningChapter) {
+                let curentDuration = 0
+                let chapter = this.playBook.chapters[chapterOrder]
+                for (var order in chapter.paragraphs) {
+                    if ( chapter.lastListenedParagraph >= 0 && order <= chapter.lastListenedParagraph ) {
+                        if( chapter.paragraphs[order].type === "text" )
+                            curentDuration += chapter.paragraphs[order].duration
+                    } else break
+                }
+                return curentDuration / 1000    /* convert millisecond to second */
+            },
+            playBookChapterTotalDuration(chapterOrder = this.playBook.listeningChapter) {
+                let chapterDuration = 0
+                for (let paragraph of this.playBook.chapters[chapterOrder].paragraphs)
+                    if( paragraph.type === "text" )
+                        chapterDuration += paragraph.duration
+                return chapterDuration / 1000    /* convert millisecond to second */
             },
 
             // audio
@@ -385,28 +415,51 @@
                 if( this.setAudioObject() )
                     this.audio.object.play()
             },
+            audioPause() {
+                if( this.audio.object )
+                    this.audio.object.pause()
+            },
 
             // audio sets
             setAudioObject() {
                 if( this.audio.src != this.audioSrc ) {
+                    this.resetAudioObject()
                     this.audio.src = this.audioSrc
                     this.audio.object = new Audio(this.audio.src)
+                    // this.audio.duration = this.playChapter.paragraphs[this.playChapter.lastListenedParagraph + 1].duration / 1000
+                    this.audio.object.addEventListener('loadedmetadata', () => this.audio.duration = this.audio.object.duration)
                     this.audio.object.addEventListener('timeupdate', this.audioUpdater)
                     this.audio.object.addEventListener('ended', this.audioEnded)
                     this.audio.object.playbackRate = this.audioSpeed
+
+                    // this.audio.duration = parseInt(this.audio.object.duration)
                 }
                 return this.audio.object ? true : false
+            },
+            resetAudioObject() {
+                    this.audio.src = ""
+                    this.audio.object = this.audio.currentTime =  this.audio.duration = null
             },
 
             // audio events
             audioEnded() {
-                if (this.playBook.listening.paragraph < this.playChapter.paragraphs.length - 1) {
-                    this.playBook.listening.paragraph++
+                this.playChapter.lastListenedParagraph ++
+
+                if (this.playChapter.lastListenedParagraph < this.playChapter.paragraphs.length - 1) {
                     this.setAudioObject()
                     this.audio.object.play()
-                } else {
+                } else
                     this.playerPause()
-                }
+
+                    this.audio.currentTime = 0
+
+                // if (this.playBook.listening.paragraph < this.playChapter.paragraphs.length - 1) {
+                //     this.playBook.listening.paragraph++
+                //     this.setAudioObject()
+                //     this.audio.object.play()
+                // } else {
+                //     this.playerPause()
+                // }
             },
             audioUpdater() {
                 this.audio.currentTime = this.getCurrentParagraphTime()
@@ -423,7 +476,6 @@
 
                 if( this.sortBooksListType === "eltit" )
                     return [...this.books].sort((a, b) => a.title.localeCompare(b.title)).reverse()
-                    
 
                 return this.books
             },
@@ -472,30 +524,74 @@
                 return this.player.speedName ? this.player.speedName[this.player.speed] : 'ups!'
             },
             playBookPartPrevEnable() {
-                return this.playBook.listening.chapter <= 0 ? false : true
+                return this.playBook.listeningChapter <= 0 ? false : true
             },
             playBookPartNextEnable() {
-                return this.playBook.listening.chapter >= this.playBook.chapters.length - 1 ? false : true
+                return this.playBook.listeningChapter >= this.playBook.chapters.length - 1 ? false : true
             },
             playRewindBackEnable() {
-                return this.playChapter.listen <= 0 ? false : true
+                // return this.playBookCurrentDuration + ( this.audio.object ? this.audio.currentTime : 0 ) <= 0 ? false : true    // depend on curent time
+                return this.playBookCurrentParagraph <= 0 ? false : true     // depend on paragraphs
+                // return this.playChapter.listen <= 0 ? false : true           // old
             },
             playRewindFrontEnable() {
-                return this.playChapter.listen >= this.playChapter.length ? false : true
+                return this.playBookCurrentParagraph >= this.playChapter.paragraphs.length - 1 ? false : true // depend on paragraphs
+                // return this.playChapter.listen >= this.playChapter.length ? false : true // old
             },
             playStartDisable() {
                 return this.isPlayerStarted
             },
             playerPlayPauseEnable() {
-                return this.playRewindFrontEnable
+                // return this.playRewindFrontEnable
+                return !this.isPlayBookChapterEnded
+            },
+            playBookCurrentParagraph() {
+                return this.playChapter.lastListenedParagraph + 1
+            },
+            playBookCurrentDuration() {
+                let curentDuration = 0
+                for (let chapter of this.playBook.chapters) {
+                    for (var order in chapter.paragraphs) {
+                        if ( chapter.lastListenedParagraph >= 0 && order <= chapter.lastListenedParagraph ) {
+                            if( chapter.paragraphs[order].type === "text" )
+                                curentDuration += chapter.paragraphs[order].duration
+                        } else break
+                    }
+                }
+                return curentDuration / 1000    /* convert millisecond to second */
+            },
+            playBookTotalDuration() {
+                let totalDuration = 0
+                for (let chapter of this.playBook.chapters)
+                    for (let paragraph of chapter.paragraphs)
+                        if( paragraph.type === "text" )
+                            totalDuration += paragraph.duration
+                return totalDuration / 1000    /* convert millisecond to second */
+            },
+            isPlayBookChapterEnded() {
+                return this.playChapter.lastListenedParagraph === this.playChapter.paragraphs.length - 1 ? true : false
             },
             audioSrc() {
-                let paragraph = this.playChapter.paragraphs[this.playBook.listening.paragraph]
-                return `http://mobitoon.ru/novelist/app/books/${this.selectedBookId}/${this.selectedBookId}_${this.playChapter.id}_${paragraph.id}.${paragraph.extension}`
+                // let paragraph = this.playChapter.paragraphs[this.playBook.listening.paragraph]
+                // if ( this.playChapter.lastListenedParagraph < this.playChapter.paragraphs.length ) {
+                    let paragraph = this.playChapter.paragraphs[this.playBookCurrentParagraph]
+                    return `http://mobitoon.ru/novelist/app/books/${this.selectedBookId}/${this.selectedBookId}_${this.playChapter.id}_${paragraph.id}.${paragraph.extension}`
+                // } else
+                // return false
+
             },
             audioSpeed() {
                 return 1 + this.player.speed * .25
             },
+            // audioDuration() {
+            //     console.log(this.audio.object)
+            //     if( this.audio.object!=null )
+            //         console.log(this.audio.object.duration)
+            //     if ( this.audio.object && this.audio.object.duration )
+            //         return this.audio.object.duration
+            //     else
+            //         return 0
+            // }
         },
         mounted() {
             if (this.isAuthenticated)

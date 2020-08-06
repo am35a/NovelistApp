@@ -271,13 +271,16 @@ each(@selectors, {
 
 .spin {
     animation-name: spin;
-    animation-duration: 24s;
+    // animation-duration: 24s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-play-state: paused;
     animation-fill-mode: both;
 
     will-change: transform;
+    &.normal { animation-duration: 24s; }
+    &.fast { animation-duration: calc(24s / 2); }
+    &.faster { animation-duration: calc(24s / 3); }
     &.running {
         animation-play-state: running;
     }
