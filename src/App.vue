@@ -189,7 +189,6 @@
                                 {{ chapter.annotation }}
                                 <hr class="mb-1 mt-2 opa-20">
                                 <div class="float-right">{{ playBookChapterCurrentDuration(chapter.order) | timeFormatHHMMSS }} out of {{ playBookChapterTotalDuration(chapter.order) | timeFormatHHMMSS }}</div>
-                                <!-- <div class="float-right">{{ playBookChapterCurrentDuration(chapter.order) + playBook.listeningChapter === chapter.order ? audio.currentTime : 0 }} out of {{ playBookChapterTotalDuration(chapter.order) }}</div> -->
                             </small>
                         </div>
                     </div>
@@ -229,7 +228,7 @@
         },
         data() {
             return {
-                isAuthenticated: false,
+                isAuthenticated: true,
 
                 user: {},               // for data for user
                 books: [],              // for data for all user books
@@ -400,7 +399,11 @@
                             curentDuration += chapter.paragraphs[order].duration
                     } else break
                 }
-                return curentDuration / 1000    /* convert millisecond to second */
+
+                curentDuration /= 1000  /* convert millisecond to second */
+                if(chapter.order === this.playBook.listeningChapter)
+                    curentDuration += this.audio.currentTime
+                return curentDuration
             },
             playBookChapterTotalDuration(chapterOrder = this.playBook.listeningChapter) {
                 let chapterDuration = 0
