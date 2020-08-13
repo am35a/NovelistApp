@@ -42,14 +42,14 @@
                 let curentDuration = 0
                 for (let chapter of book.chapters) {
                     for (var order in chapter.paragraphs) {
-                        if ( chapter.lastListenedParagraph >= 0 && order <= chapter.lastListenedParagraph ) {
-                            if( chapter.paragraphs[order].type === "text" )
+                        if (chapter.lastListenedParagraph >= 0 && order <= chapter.lastListenedParagraph) {
+                            if (chapter.paragraphs[order].type === "text")
                                 curentDuration += chapter.paragraphs[order].duration
                         } else break
                     }
                 }
                 curentDuration /= 1000  /* convert millisecond to second */
-                if(book.id === this.$parent.playBook.id)
+                if (book.id === this.$parent.playBook.id)
                     curentDuration += this.$parent.audio.currentTime
                 return curentDuration
                 // return curentDuration / 1000 + (book.id === this.$parent.playBook.id ? this.$parent.audio.currentTime : 0)  /* convert millisecond to second */
@@ -58,8 +58,11 @@
                 let totalDuration = 0
                 for (let chapter of chapters)
                     for (let paragraph of chapter.paragraphs)
-                        if( paragraph.type === "text" )
+                        if (paragraph.type === "text")
                             totalDuration += paragraph.duration
+                // for( let chapter of chapters )
+                //     totalDuration += chapter.paragraphs.reduce((paragraphDuration, paragraph) => paragraph.type === "text" ? paragraphDuration += paragraph.duration : paragraphDuration, 0)
+
                 return totalDuration / 1000    /* convert millisecond to second */
             },
             isItemHideAsListened(bookListen) {
@@ -73,7 +76,7 @@
             }
         },
         filters: {
-            timeFormatHHMMSS: (s) => new Date(s * 1000).toISOString().substr( s < 3600 ? 14 : 11, s < 3600 ? 5 : 8)
+            timeFormatHHMMSS: (s) => new Date(s * 1000).toISOString().substr(s < 3600 ? 14 : 11, s < 3600 ? 5 : 8)
         }
     }
 </script>

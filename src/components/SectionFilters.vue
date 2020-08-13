@@ -54,7 +54,7 @@
                 this.$parent.toggleSectionFilters()
             },
             closeAll(event) {
-                if(event.target.classList.contains('filters'))
+                if (event.target.classList.contains('filters'))
                     this.$parent.toggleSectionFilters()
             }
         }

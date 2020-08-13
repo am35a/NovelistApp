@@ -15,7 +15,7 @@
             }
         },
         methods: {
-            vote(index){
+            vote(index) {
                 index === this.$parent.playBook.vote && index === 1 ? this.$parent.playBook.vote = 0 : this.$parent.playBook.vote = index
             }
         }

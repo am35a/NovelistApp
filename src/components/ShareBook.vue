@@ -47,38 +47,38 @@
                 let book = `https://noveli.st/book/${this.$parent.playBook.id}`
                 let media = `http://noveli.st/book/${this.$parent.playBook.id}/cover.jpg`
                 switch (key) {
-                    case "sms":
+                    case 'sms':
                         window.open(`sms:?body=${this.$parent.playBook.title}%0D%0A${book}`, "_blank")
                         break;
-                    case "whatsapp":
+                    case 'whatsapp':
                         window.open(`https://api.whatsapp.com/send?text=${this.$parent.playBook.title}%0D%0A${book}%0D%0A${this.$parent.playBook.annotation}`, "_blank")
                         break;
-                    case "viber":
+                    case 'viber':
                         window.open(`viber://forward?text=${this.$parent.playBook.title}%0D%0A${book}%0D%0A${this.$parent.playBook.annotation}`, "_blank")
                         break;
-                    case "skype":
+                    case 'skype':
                         window.open(`https://web.skype.com/share?url=${this.$parent.playBook.title}%0D%0A${book}%0D%0A${this.$parent.playBook.annotation}`, "_blank")
                         break;
-                    case "tumblr":
+                    case 'tumblr':
                         window.open(`https://www.tumblr.com/share/link?url=${book}&name=${this.$parent.playBook.title}&description=${this.$parent.playBook.annotation}`, "_blank")
                         break;
-                    case "digg":
+                    case 'digg':
                         window.open(`http://www.digg.com/submit?url=${book}`, "_blank")
                         break;
-                    case "reddit":
+                    case 'reddit':
                         window.open(`http://reddit.com/submit?url=${book}&title=${this.$parent.playBook.title}`, "_blank")
                         break;
-                    case "pinterest":
+                    case 'pinterest':
                         window.open(`https://pinterest.com/pin/create/button/?url=${book}&media=${media}&description=${this.$parent.playBook.title}`, "_blank")
                         break;
-                    case "facebook":
+                    case 'facebook':
                         window.open(`https://www.facebook.com/sharer/sharer.php?u=${book}&title=${this.$parent.playBook.title}&description=${this.$parent.playBook.annotation}&hashtag=${this.$parent.playBook.genres}`, "_blank")
                         break;
-                    case "twitter":
+                    case 'twitter':
                         window.open(`https://twitter.com/intent/tweet?text=${this.$parent.playBook.title}&url=${book}&hashtags=${this.$parent.playBook.genres}`, "_blank")
                         break;
-                    case "email":
-                        window.open(`mailto:?subject=${this.$parent.playBook.title}&body=${book}`, "_blank")
+                    case 'email':
+                        window.open(`mailto:?subject=${this.$parent.playBook.title}&body=${book}`, '_blank')
                         break;
                     default:
                         break;

@@ -239,7 +239,7 @@
                 selectedBookId: null,   // currently playing book
 
                 audio: {
-                    src: "",
+                    src: '',
                     object: null,
                     currentTime: null,
                     duration: null
@@ -256,7 +256,7 @@
                 showSectionContents: false,
 
                 // books list sort types - default, title
-                sortBooksListType: "default",
+                sortBooksListType: 'default',
 
                 // axios catch error
                 // errorGetData: false,
@@ -275,7 +275,7 @@
 
                 this.playerClose()
                 this.toggleSectionAccount()
-                if(this.showSectionFilters)
+                if (this.showSectionFilters)
                     this.toggleSectionFilters()
             },
             signingUp() {
@@ -284,16 +284,16 @@
 
             // toggle sections
             toggleSectionNovelist() {
-                if(!this.isAuthenticated)
+                if (!this.isAuthenticated)
                     this.showSectionNovelist = !this.showSectionNovelist
                 else {
-                    if(this.showSectionAccount)
+                    if (this.showSectionAccount)
                         this.showSectionAccount = false
                     this.showSectionNovelist = !this.showSectionNovelist
                 }
             },
             toggleSectionAccount() {
-                if(this.showSectionNovelist)
+                if (this.showSectionNovelist)
                     this.showSectionNovelist = false
 
                 this.showSectionAccount = !this.showSectionAccount
@@ -330,7 +330,7 @@
             },
             palyerAddSpeed() {
                 this.player.speed >= this.player.speedName.length - 1 ? this.player.speed = 0 : this.player.speed++
-                if( this.audio.object )
+                if (this.audio.object)
                     this.audio.object.playbackRate = this.audioSpeed
             },
             palyerSwitchChapter(direction) {
@@ -340,7 +340,7 @@
                 // this.playBook.listening.paragraph = 0
             },
             palyerChangeChapter(order) {
-                if( this.playBook.listeningChapter != order ) {
+                if (this.playBook.listeningChapter != order) {
                     this.playerPause()
                     this.playBook.listeningChapter = order
                     this.setPlayChapterData()
@@ -348,11 +348,11 @@
             },
             playerRewind(direction) {
 
-                if( direction < 0 && this.playChapter.lastListenedParagraph >= 0 || direction > 0 && this.playChapter.lastListenedParagraph < this.playChapter.paragraphs.length - 1 ) {
+                if (direction < 0 && this.playChapter.lastListenedParagraph >= 0 || direction > 0 && this.playChapter.lastListenedParagraph < this.playChapter.paragraphs.length - 1) {
                     this.playChapter.lastListenedParagraph += direction
                     this.audioPause()
                     this.setAudioObject()
-                    if(this.isPlayerStarted)
+                    if (this.isPlayerStarted)
                         this.audioPlay()
                 }
 
@@ -364,7 +364,7 @@
                 // return this.playChapter.listen = listen
             },
             playerStart() {
-                if( !this.isPlayBookChapterEnded ) {
+                if (!this.isPlayBookChapterEnded) {
                     this.isPlayerStarted = true
                     this.audioPlay()
                 }
@@ -394,38 +394,38 @@
                 let curentDuration = 0
                 let chapter = this.playBook.chapters[chapterOrder]
                 for (var order in chapter.paragraphs) {
-                    if ( chapter.lastListenedParagraph >= 0 && order <= chapter.lastListenedParagraph ) {
-                        if( chapter.paragraphs[order].type === "text" )
+                    if (chapter.lastListenedParagraph >= 0 && order <= chapter.lastListenedParagraph) {
+                        if (chapter.paragraphs[order].type === 'text')
                             curentDuration += chapter.paragraphs[order].duration
                     } else break
                 }
 
                 curentDuration /= 1000  /* convert millisecond to second */
-                if(chapter.order === this.playBook.listeningChapter)
+                if (chapter.order === this.playBook.listeningChapter)
                     curentDuration += this.audio.currentTime
                 return curentDuration
             },
             playBookChapterTotalDuration(chapterOrder = this.playBook.listeningChapter) {
                 let chapterDuration = 0
                 for (let paragraph of this.playBook.chapters[chapterOrder].paragraphs)
-                    if( paragraph.type === "text" )
+                    if (paragraph.type === 'text')
                         chapterDuration += paragraph.duration
                 return chapterDuration / 1000    /* convert millisecond to second */
             },
 
             // audio
             audioPlay() {
-                if( this.setAudioObject() )
+                if (this.setAudioObject())
                     this.audio.object.play()
             },
             audioPause() {
-                if( this.audio.object )
+                if(this.audio.object)
                     this.audio.object.pause()
             },
 
             // audio sets
             setAudioObject() {
-                if( this.audio.src != this.audioSrc ) {
+                if (this.audio.src != this.audioSrc) {
                     this.resetAudioObject()
                     this.audio.src = this.audioSrc
                     this.audio.object = new Audio(this.audio.src)
@@ -474,10 +474,10 @@
         computed: {
             // sort books list by types 
             sortBooksList() {
-                if( this.sortBooksListType === "title" )
+                if (this.sortBooksListType === 'title')
                     return [...this.books].sort((a, b) => a.title.localeCompare(b.title))
 
-                if( this.sortBooksListType === "eltit" )
+                if (this.sortBooksListType === 'eltit')
                     return [...this.books].sort((a, b) => a.title.localeCompare(b.title)).reverse()
 
                 return this.books
@@ -485,7 +485,7 @@
 
             // hide or show sections
             isSectionSignIn() {
-                if ( this.isAuthenticated || this.showSectionNovelist )
+                if (this.isAuthenticated || this.showSectionNovelist)
                     return false
 
                 // if ( this.isSectionNovelist && this.isAuthenticated )
@@ -494,14 +494,14 @@
                 return true
             },
             isSectionList() {
-                if( !this.isAuthenticated || this.showSectionNovelist || this.showSectionAccount )
+                if (!this.isAuthenticated || this.showSectionNovelist || this.showSectionAccount)
                     return false
 
                 return true
             },
             isSectionFilters() {
                 // || this.isSectionPlayer
-                if( this.showSectionNovelist || this.showSectionAccount )
+                if (this.showSectionNovelist || this.showSectionAccount)
                     return false
                     
                 return this.showSectionFilters
@@ -555,8 +555,8 @@
                 let curentDuration = 0
                 for (let chapter of this.playBook.chapters) {
                     for (var order in chapter.paragraphs) {
-                        if ( chapter.lastListenedParagraph >= 0 && order <= chapter.lastListenedParagraph ) {
-                            if( chapter.paragraphs[order].type === "text" )
+                        if (chapter.lastListenedParagraph >= 0 && order <= chapter.lastListenedParagraph) {
+                            if (chapter.paragraphs[order].type === 'text')
                                 curentDuration += chapter.paragraphs[order].duration
                         } else break
                     }
@@ -567,7 +567,7 @@
                 let totalDuration = 0
                 for (let chapter of this.playBook.chapters)
                     for (let paragraph of chapter.paragraphs)
-                        if( paragraph.type === "text" )
+                        if (paragraph.type === 'text')
                             totalDuration += paragraph.duration
                 return totalDuration / 1000    /* convert millisecond to second */
             },
@@ -586,15 +586,6 @@
             audioSpeed() {
                 return 1 + this.player.speed * .25
             },
-            // audioDuration() {
-            //     console.log(this.audio.object)
-            //     if( this.audio.object!=null )
-            //         console.log(this.audio.object.duration)
-            //     if ( this.audio.object && this.audio.object.duration )
-            //         return this.audio.object.duration
-            //     else
-            //         return 0
-            // }
         },
         mounted() {
             if (this.isAuthenticated)

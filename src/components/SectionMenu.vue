@@ -24,6 +24,6 @@
 
 <script>
     export default {
-        name: "SectionMenu"
+        name: 'SectionMenu'
     }
 </script>
