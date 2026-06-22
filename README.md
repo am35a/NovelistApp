@@ -1,11 +1,6 @@
 # Novelist Speaking Books 
-[Preview App UI (web)](http://mobitoon.ru/novelist/app)  
-[Preview App UI (apk)](http://mobitoon.ru/novelist/app/app/app-debug.apk)
 
-![preview signin](http://mobitoon.ru/novelist/app/app/prev-enter-7.png)
-![preview books list](http://mobitoon.ru/novelist/app/app/prev-books-7.png)
-![preview books filters](http://mobitoon.ru/novelist/app/app/prev-filters-7.png)
-![preview player](http://mobitoon.ru/novelist/app/app/prev-player-7.png)
+<img width="2880" height="2160" alt="novelist_1" src="https://github.com/user-attachments/assets/0802fe15-ac41-4915-ad71-a2a1acbe70ab" />
 
 ## Project setup
 ```
